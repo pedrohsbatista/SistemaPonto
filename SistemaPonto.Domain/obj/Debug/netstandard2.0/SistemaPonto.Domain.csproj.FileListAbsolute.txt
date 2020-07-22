@@ -1,0 +1,9 @@
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Domain\bin\Debug\netstandard2.0\SistemaPonto.Domain.deps.json
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Domain\bin\Debug\netstandard2.0\SistemaPonto.Domain.dll
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Domain\bin\Debug\netstandard2.0\SistemaPonto.Domain.pdb
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Domain\obj\Debug\netstandard2.0\SistemaPonto.Domain.csprojAssemblyReference.cache
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Domain\obj\Debug\netstandard2.0\SistemaPonto.Domain.AssemblyInfoInputs.cache
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Domain\obj\Debug\netstandard2.0\SistemaPonto.Domain.AssemblyInfo.cs
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Domain\obj\Debug\netstandard2.0\SistemaPonto.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Domain\obj\Debug\netstandard2.0\SistemaPonto.Domain.dll
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Domain\obj\Debug\netstandard2.0\SistemaPonto.Domain.pdb

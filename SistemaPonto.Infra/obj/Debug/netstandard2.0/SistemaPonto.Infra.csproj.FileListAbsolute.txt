@@ -1,0 +1,12 @@
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Infra\bin\Debug\netstandard2.0\SistemaPonto.Infra.deps.json
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Infra\bin\Debug\netstandard2.0\SistemaPonto.Infra.dll
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Infra\bin\Debug\netstandard2.0\SistemaPonto.Infra.pdb
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Infra\bin\Debug\netstandard2.0\SistemaPonto.Domain.dll
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Infra\bin\Debug\netstandard2.0\SistemaPonto.Domain.pdb
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Infra\obj\Debug\netstandard2.0\SistemaPonto.Infra.csprojAssemblyReference.cache
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Infra\obj\Debug\netstandard2.0\SistemaPonto.Infra.AssemblyInfoInputs.cache
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Infra\obj\Debug\netstandard2.0\SistemaPonto.Infra.AssemblyInfo.cs
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Infra\obj\Debug\netstandard2.0\SistemaPonto.Infra.csproj.CoreCompileInputs.cache
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Infra\obj\Debug\netstandard2.0\SistemaPonto.Infra.csproj.CopyComplete
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Infra\obj\Debug\netstandard2.0\SistemaPonto.Infra.dll
+C:\Users\Pedro\3D Objects\SistemaPonto\SistemaPonto.Infra\obj\Debug\netstandard2.0\SistemaPonto.Infra.pdb

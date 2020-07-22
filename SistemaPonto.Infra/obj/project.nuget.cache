@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "3spJxWUn230y6KMx/8sD0OJpVcdhMQZNPP83YhSI2Bb5veVkyZ+sP/nQkItqhQrdq3s7zvkh6Isy/8LzetsGzg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Pedro\\3D Objects\\SistemaPonto\\SistemaPonto.Infra\\SistemaPonto.Infra.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Pedro\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Pedro\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
