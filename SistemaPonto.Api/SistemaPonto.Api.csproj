@@ -2,6 +2,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SistemaPonto.Domain\SistemaPonto.Domain.csproj" />
+    <ProjectReference Include="..\SistemaPonto.Infra\SistemaPonto.Infra.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
   </ItemGroup>
 
   <PropertyGroup>
