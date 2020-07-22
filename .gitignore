@@ -1,0 +1,7 @@
+.vscode
+/SistemaPonto.Api/bin
+/SistemaPonto.Api/obj
+/SistemaPonto.Domain/bin
+/SistemaPonto.Domain/obj
+/SistemaPonto.Infra/bin
+/SistemaPonto.Infra/obj
