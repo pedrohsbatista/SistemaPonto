@@ -5,8 +5,8 @@ using SistemaPonto.Domain.Services;
 namespace SistemaPonto.Api {
     [ApiController]
     [Route("api/[controller]")]
-    public class SetorController : GenericController<Setor> {
-        public SetorController(GenericService<Setor> service) : base(service){           
+    public class MovimentacaoController : GenericController<Movimentacao> {
+        public MovimentacaoController(GenericService<Movimentacao> service) : base(service){           
         }      
     }
 }

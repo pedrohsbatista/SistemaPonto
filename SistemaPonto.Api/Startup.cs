@@ -32,8 +32,8 @@ namespace SistemaPonto.Api
         {
            services.AddControllers();
            services.AddDbContext<DataContext>(options => options.UseNpgsql(Configuration.GetConnectionString("ConnectionString")));
-           services.AddTransient<ISetorRepository, SetorRepository>();
-           services.AddTransient<SetorService>();
+           services.AddTransient(typeof(GenericService<>));            
+           services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
