@@ -12,6 +12,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using SistemaPonto.Infra.Data;
+using SistemaPonto.Domain.IRepository;
+using SistemaPonto.Infra.Repositories;
+using SistemaPonto.Domain.Services;
 
 namespace SistemaPonto.Api
 {
@@ -29,6 +32,8 @@ namespace SistemaPonto.Api
         {
            services.AddControllers();
            services.AddDbContext<DataContext>(options => options.UseNpgsql(Configuration.GetConnectionString("ConnectionString")));
+           services.AddTransient<ISetorRepository, SetorRepository>();
+           services.AddTransient<SetorService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,7 +44,7 @@ namespace SistemaPonto.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

@@ -5,6 +5,8 @@ using SistemaPonto.Domain.Entities;
 using SistemaPonto.Domain.Services;
 
 namespace SistemaPonto.Api {
+    [ApiController]
+    [Route("api/[controller]")]
     public class SetorController : Controller {
 
         private readonly SetorService _setorService;
@@ -13,8 +15,9 @@ namespace SistemaPonto.Api {
             _setorService = setorService;
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Setor>> Get(Guid id){
+        [HttpGet("get/{id:guid}")]
+        public async Task<ActionResult<Setor>> Get(Guid id)
+        {
           return await _setorService.ReadById(id);
         }
     }
