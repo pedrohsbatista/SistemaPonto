@@ -3,9 +3,9 @@ using SistemaPonto.Domain.IRepository;
 using SistemaPonto.Infra.Data;
 
 namespace SistemaPonto.Infra.Repositories{
-    public class SetorRepository : GenericRepository<Setor>, ISetorRepository
+    public class MovimentacaoRepository : GenericRepository<Movimentacao>, IMovimentacaoRepository
     {
-        public SetorRepository(DataContext dataContext) : base(dataContext){
+        public MovimentacaoRepository(DataContext dataContext) : base(dataContext){
         }            
     }
 }
