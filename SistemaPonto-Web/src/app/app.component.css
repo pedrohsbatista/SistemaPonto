@@ -1,0 +1,16 @@
+.menu {
+    position: inherit;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 90%;
+}
+
+.menu-largura {
+   padding: 20px;
+}
+
+.conteudo {
+    padding: 10px;
+}
