@@ -1,12 +1,20 @@
 <mat-toolbar>
-    <button mat-icon-button (click)="sidenav.toggle()">
+    <button mat-icon-button (click)="sidenav.toggle()" class="remove-hover">
       <mat-icon>menu</mat-icon>
     </button>
     <span>Skye</span>
+    <span class="buttons-toolbar"></span>
+      <button mat-button [matMenuTriggerFor]="belowMenu">Usuário</button>
+      <mat-menu #belowMenu="matMenu" yPosition="below">
+        <button mat-menu-item>Sair</button>      
+      </mat-menu>  
   </mat-toolbar>
-  <mat-sidenav-container class="menu" >   
-    <mat-sidenav #sidenav class="menu-largura" >  
-       <p>Teste</p>
+  <mat-sidenav-container class="menu">   
+    <mat-sidenav #sidenav class="menu-largura">  
+      <a mat-button routerLink="/setor" (click)="sidenav.toggle()" class="remove-hover">        
+        <mat-icon>corporate_fare</mat-icon>
+        Setores
+      </a>     
     </mat-sidenav>
     <mat-sidenav-content class="conteudo">   
         <router-outlet></router-outlet>

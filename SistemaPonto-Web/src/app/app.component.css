@@ -10,7 +10,15 @@
 .menu-largura {
    padding: 20px;
 }
-
 .conteudo {
     padding: 10px;
+}
+
+.mat-button.remove-hover ::ng-deep .mat-button-focus-overlay,
+.mat-icon-button.remove-hover ::ng-deep .mat-button-focus-overlay {
+  background: none;
+}
+
+.buttons-toolbar{
+  flex: 1 1 auto;
 }

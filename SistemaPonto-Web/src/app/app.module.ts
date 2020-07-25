@@ -16,6 +16,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { CustomPaginator } from './utilities/custom-paginator-configuration';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -35,7 +38,10 @@ import { CustomPaginator } from './utilities/custom-paginator-configuration';
     MatFormFieldModule,
     MatPaginatorModule,
     MatInputModule,
-    MatSortModule
+    MatSortModule,
+    HttpClientModule,
+    FormsModule,
+    MatMenuModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: CustomPaginator() }

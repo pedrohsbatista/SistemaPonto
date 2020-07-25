@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { SetorService } from  '../../services/setor.service';
+import { Setor } from '../../models/setor';
+import { Observable } from 'rxjs';
 
 export interface UserData {
   id: string;
@@ -20,22 +23,19 @@ const NOMES: string[] = [
 })
 export class SetorComponent implements OnInit {
   displayedColumns: string[] = ['nome'];
-  dataSource: MatTableDataSource<UserData>;
+  dataSource: MatTableDataSource<Setor>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor() { 
-      // Create 100 users
-      const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
-      // Assign the data to the data source for the table to render
-      this.dataSource = new MatTableDataSource(users);
+  constructor(private setorService: SetorService) {          
+      this.dataSource = new MatTableDataSource([]);
   }
 
   ngOnInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.getAll();
   }
 
   applyFilter(event: Event) {
@@ -47,6 +47,11 @@ export class SetorComponent implements OnInit {
     }
   }
 
+  getAll(){
+     this.setorService.getAll().subscribe((setores: Setor[]) => {
+      this.dataSource.data = setores;
+     });
+  }
 }
 
 function createNewUser(id: number): UserData {
