@@ -1,0 +1,6 @@
+.form-title{
+  display: flex;
+}
+.form-title > h2 {
+    margin-top: 2px;
+}

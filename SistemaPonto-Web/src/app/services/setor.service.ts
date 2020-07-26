@@ -3,6 +3,7 @@ import { Observable, from } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GlobalConstants } from '../utilities/global-constants'
 import { Setor } from '../models/setor';
+import { Guid } from 'guid-typescript';
 
 
 @Injectable({
@@ -16,7 +17,23 @@ export class SetorService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
 
-  getAll() : Observable<Setor[]> {
+  get() : Observable<Setor[]> {
      return this.httpClient.get<Setor[]>(GlobalConstants.apiUrl + 'setor');
   };  
+
+  save(setor: Setor) : Observable<Setor> {
+    if (setor.id) {
+      return this.httpClient.put<Setor>(GlobalConstants.apiUrl + 'setor', JSON.stringify(setor), this.httpOptions);
+    }  else{
+      return this.httpClient.post<Setor>(GlobalConstants.apiUrl + 'setor', JSON.stringify(setor), this.httpOptions);
+    }  
+  }
+
+  delete(id: Guid) {
+    return this.httpClient.delete<Setor>(GlobalConstants.apiUrl + 'setor/' + id, this.httpOptions)
+  }  
+
+  getById(id: Guid) : Observable<Setor> {
+    return this.httpClient.get<Setor>(GlobalConstants.apiUrl + 'setor/' + id, this.httpOptions)
+  }   
 }

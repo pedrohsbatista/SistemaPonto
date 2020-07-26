@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { SetorComponent } from './components/setor/setor.component';
+import { SetorComponent } from './components/setor/lista/setor.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -17,14 +17,20 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { CustomPaginator } from './utilities/custom-paginator-configuration';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
+import { SetorFormComponent } from './components/setor/form/setor-form/setor-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmExclusionDialogComponent } from './utilities/confirm-exclusion-dialog/confirm-exclusion-dialog.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SetorComponent    
+    SetorComponent,
+    SetorFormComponent,    
+    ConfirmExclusionDialogComponent,  
   ],
   imports: [
     BrowserModule,
@@ -39,9 +45,11 @@ import { MatMenuModule } from '@angular/material/menu';
     MatPaginatorModule,
     MatInputModule,
     MatSortModule,
-    HttpClientModule,
-    FormsModule,
-    MatMenuModule
+    HttpClientModule,    
+    MatMenuModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatCardModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: CustomPaginator() }
