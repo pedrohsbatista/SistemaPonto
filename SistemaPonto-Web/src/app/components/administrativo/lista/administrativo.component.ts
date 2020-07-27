@@ -1,26 +1,26 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { SetorService } from  '../../../services/setor.service';
-import { Setor } from '../../../models/entidades/setor';
-import { Guid } from 'guid-typescript';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
+import { Guid } from 'guid-typescript';
 import { ConfirmExclusionDialogComponent } from 'src/app/utilities/confirm-exclusion-dialog/confirm-exclusion-dialog.component';
+import { Administrativo } from '../../../models/entidades/administrativo';
+import { AdministrativoService } from '../../../services/administrativo.service';
 
 @Component({
-  selector: 'app-setor',
-  templateUrl: './setor.component.html',
-  styleUrls: ['./setor.component.css']
+  selector: 'app-administrativo',
+  templateUrl: './administrativo.component.html',
+  styleUrls: ['./administrativo.component.css']
 })
-export class SetorComponent implements OnInit {
+export class AdministrativoComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'commands'];
-  dataSource: MatTableDataSource<Setor>;
+  dataSource: MatTableDataSource<Administrativo>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private setorService: SetorService, private dialog: MatDialog) {          
+  constructor(private administrativoService: AdministrativoService, private dialog: MatDialog) {          
       this.dataSource = new MatTableDataSource([]);
   }
 
@@ -40,8 +40,8 @@ export class SetorComponent implements OnInit {
   }
 
   getAll(){
-     this.setorService.get().subscribe((setores: Setor[]) => {
-      this.dataSource.data = setores;
+     this.administrativoService.get().subscribe((administradores: Administrativo[]) => {
+      this.dataSource.data = administradores;
      });
   }
 
@@ -56,7 +56,7 @@ export class SetorComponent implements OnInit {
   }
 
   delete(id: Guid){
-    this.setorService.delete(id).subscribe((success) => {
+    this.administrativoService.delete(id).subscribe((success) => {
       this.getAll();
     })    
   }

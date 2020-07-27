@@ -1,0 +1,19 @@
+<mat-card>
+    <div class="form-title">
+        <a mat-icon-button routerLink="/colaborador">
+            <mat-icon>keyboard_backspace</mat-icon>            
+        </a> 
+        <h2>Colaborador</h2>
+    </div>         
+    <form [formGroup]="colaboradorForm" (ngSubmit)="save()">
+        <p>
+            <mat-form-field style="width: 50%;">
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="nome">
+            </mat-form-field>
+        </p>
+        <p>
+            <button mat-raised-button>Salvar</button>
+        </p>    
+    </form>
+</mat-card>

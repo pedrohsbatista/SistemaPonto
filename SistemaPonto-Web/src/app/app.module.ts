@@ -23,14 +23,25 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmExclusionDialogComponent } from './utilities/confirm-exclusion-dialog/confirm-exclusion-dialog.component';
 import { MatCardModule } from '@angular/material/card';
-
+import { ColaboradorComponent } from './components/colaborador/lista/colaborador.component';
+import { ColaboradorFormComponent } from './components/colaborador/form/colaborador-form.component';
+import { AdministrativoComponent } from './components/administrativo/lista/administrativo.component';
+import { AdministrativoFormComponent } from './components/administrativo/form/administrativo-form.component';
+import { MovimentacaoComponent } from './components/movimentacao/lista/movimentacao.component';
+import { MovimentacaoFormComponent } from './components/movimentacao/form/movimentacao-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SetorComponent,
     SetorFormComponent,    
-    ConfirmExclusionDialogComponent,  
+    ConfirmExclusionDialogComponent, 
+    ColaboradorComponent, 
+    ColaboradorFormComponent, 
+    AdministrativoComponent, 
+    AdministrativoFormComponent, 
+    MovimentacaoComponent, 
+    MovimentacaoFormComponent,  
   ],
   imports: [
     BrowserModule,
@@ -52,7 +63,7 @@ import { MatCardModule } from '@angular/material/card';
     MatCardModule
   ],
   providers: [
-    { provide: MatPaginatorIntl, useValue: CustomPaginator() }
+    { provide: MatPaginatorIntl, useValue: CustomPaginator() },
   ],
   bootstrap: [AppComponent]
 })

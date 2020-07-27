@@ -1,6 +1,5 @@
 import { Guid } from "guid-typescript";
 
-export interface Setor {
+export interface EntidadeBase {
     id : Guid
-    nome : string
 }

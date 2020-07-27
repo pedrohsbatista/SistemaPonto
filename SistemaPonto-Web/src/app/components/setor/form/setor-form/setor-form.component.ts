@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder } from  '@angular/forms';
 import { SetorService } from 'src/app/services/setor.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { Setor } from 'src/app/models/setor';
+import { Setor } from 'src/app/models/entidades/setor';
 
 @Component({
   selector: 'app-setor-form',
@@ -36,9 +36,15 @@ export class SetorFormComponent implements OnInit {
   }
 
   save() {
-    this.setorService.save(this.setorForm.value).subscribe((success) => {
-      this.router.navigate(['/setor']);
-    });;
+    var dados = this.setorForm.value;
+    if (dados.id){
+      this.setorService.put(this.setorForm.value).subscribe((success) => {
+        this.router.navigate(['/setor']);
+      });;
+    } else {
+      this.setorService.post(this.setorForm.value).subscribe((success) => {
+        this.router.navigate(['/setor']);
+      });;
+    }
   }
-
 }

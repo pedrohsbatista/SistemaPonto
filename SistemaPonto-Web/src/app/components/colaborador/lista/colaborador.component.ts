@@ -1,27 +1,27 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { Guid } from 'guid-typescript';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { SetorService } from  '../../../services/setor.service';
-import { Setor } from '../../../models/entidades/setor';
-import { Guid } from 'guid-typescript';
-import { MatDialog } from '@angular/material/dialog';
 import { ConfirmExclusionDialogComponent } from 'src/app/utilities/confirm-exclusion-dialog/confirm-exclusion-dialog.component';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { Colaborador } from '../../../models/entidades/colaborador';
+import { ColaboradorService } from  '../../../services/colaborador.service';
 
 @Component({
-  selector: 'app-setor',
-  templateUrl: './setor.component.html',
-  styleUrls: ['./setor.component.css']
+  selector: 'app-colaborador',
+  templateUrl: './colaborador.component.html',
+  styleUrls: ['./colaborador.component.css']
 })
-export class SetorComponent implements OnInit {
+export class ColaboradorComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'commands'];
-  dataSource: MatTableDataSource<Setor>;
+  dataSource: MatTableDataSource<Colaborador>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private setorService: SetorService, private dialog: MatDialog) {          
-      this.dataSource = new MatTableDataSource([]);
+  constructor(private colaboradorService: ColaboradorService, private dialog: MatDialog) {          
+    this.dataSource = new MatTableDataSource([]);
   }
 
   ngOnInit(): void {
@@ -40,8 +40,8 @@ export class SetorComponent implements OnInit {
   }
 
   getAll(){
-     this.setorService.get().subscribe((setores: Setor[]) => {
-      this.dataSource.data = setores;
+     this.colaboradorService.get().subscribe((colaboradores: Colaborador[]) => {
+      this.dataSource.data = colaboradores;
      });
   }
 
@@ -56,7 +56,7 @@ export class SetorComponent implements OnInit {
   }
 
   delete(id: Guid){
-    this.setorService.delete(id).subscribe((success) => {
+    this.colaboradorService.delete(id).subscribe((success) => {
       this.getAll();
     })    
   }

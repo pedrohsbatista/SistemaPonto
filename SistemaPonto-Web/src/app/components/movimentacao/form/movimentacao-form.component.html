@@ -1,0 +1,19 @@
+<mat-card>
+    <div class="form-title">
+        <a mat-icon-button routerLink="/movimentacao">
+            <mat-icon>keyboard_backspace</mat-icon>            
+        </a> 
+        <h2>Movimentação</h2>
+    </div>         
+    <form [formGroup]="movimentacaoForm" (ngSubmit)="save()">
+        <p>
+            <mat-form-field style="width: 50%;">
+                <mat-label>Data</mat-label>
+                <input type="datetime-local" matInput formControlName="dataMovimentacao">
+            </mat-form-field>
+        </p>
+        <p>
+            <button mat-raised-button>Salvar</button>
+        </p>    
+    </form>
+</mat-card>
