@@ -15,6 +15,9 @@ using SistemaPonto.Infra.Data;
 using SistemaPonto.Domain.IRepository;
 using SistemaPonto.Infra.Repositories;
 using SistemaPonto.Domain.Services;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace SistemaPonto.Api
 {
@@ -30,10 +33,28 @@ namespace SistemaPonto.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           services.AddControllers();
+           services.AddControllers();           
            services.AddDbContext<DataContext>(options => options.UseNpgsql(Configuration.GetConnectionString("ConnectionString")));
            services.AddTransient(typeof(GenericService<>));            
            services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+           services.AddTransient<UsuarioService>();
+           services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+
+           services.AddAuthentication(options => {
+              options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+              options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+           })
+           .AddJwtBearer(options => {
+               options.RequireHttpsMetadata = false;
+               options.SaveToken = true;
+               options.TokenValidationParameters = new TokenValidationParameters
+               {
+                   ValidateIssuerSigningKey = true,
+                   IssuerSigningKey = new SymmetricSecurityKey(TokenService.RetornaKey()),
+                   ValidateIssuer = false,
+                   ValidateAudience = false
+               };
+           });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +68,8 @@ namespace SistemaPonto.Api
             //app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
