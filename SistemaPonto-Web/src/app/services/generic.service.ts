@@ -11,11 +11,12 @@ export class GenericService<T> {
   constructor(private httpClient: HttpClient, protected _base: string)  { }
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({'Content-Type': 'application/json', 
+                              'Authorization': 'Bearer ' + window.localStorage.getItem('token') })
   }
 
   get() : Observable<T[]> {
-     return this.httpClient.get<T[]>(this._base);
+     return this.httpClient.get<T[]>(this._base, this.httpOptions);
   };  
 
   post(dados: T) : Observable<T> {

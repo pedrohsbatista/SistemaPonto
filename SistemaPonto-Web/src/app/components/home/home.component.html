@@ -1,0 +1,42 @@
+<mat-toolbar>
+    <button mat-icon-button (click)="sidenav.toggle()" class="remove-hover">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>SKYE</span>
+    <span class="buttons-toolbar"></span>
+      <button mat-button [matMenuTriggerFor]="belowMenu">{{usuario}}</button>
+      <mat-menu #belowMenu="matMenu" yPosition="below">
+        <button mat-menu-item (click)="logout()">Sair</button>      
+      </mat-menu>  
+  </mat-toolbar>
+  <mat-sidenav-container class="menu">   
+    <mat-sidenav #sidenav class="menu-largura">  
+      <p>
+        <a mat-button routerLink="/movimentacao" (click)="sidenav.toggle()" class="remove-hover">        
+          <mat-icon>compare_arrows</mat-icon>
+          Movimentações
+        </a>  
+      </p>
+      <p>
+        <a mat-button routerLink="/colaborador" (click)="sidenav.toggle()" class="remove-hover">        
+          <mat-icon>people</mat-icon>
+          Colaboradores
+        </a>  
+      </p>
+      <p>
+        <a mat-button routerLink="/administrativo" (click)="sidenav.toggle()" class="remove-hover">        
+          <mat-icon>design_services</mat-icon>
+          Administrativo
+        </a>
+      </p>  
+      <p>
+        <a mat-button routerLink="/setor" (click)="sidenav.toggle()" class="remove-hover">        
+          <mat-icon>corporate_fare</mat-icon>
+          Setores
+        </a>
+      </p>        
+    </mat-sidenav>
+    <mat-sidenav-content class="conteudo">   
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

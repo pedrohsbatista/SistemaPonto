@@ -55,6 +55,13 @@ namespace SistemaPonto.Api
                    ValidateAudience = false
                };
            });
+
+           services.AddCors(options =>  {
+                options.AddPolicy("CorsPolicy", 
+                     builder => builder.AllowAnyOrigin().
+                                AllowAnyMethod().
+                                AllowAnyHeader()); 
+           });                                                                                     
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,9 +80,7 @@ namespace SistemaPonto.Api
 
             app.UseAuthorization();
 
-            app.UseCors(options => options.AllowAnyHeader().
-                                  AllowAnyMethod().
-                                  AllowAnyOrigin());
+            app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {

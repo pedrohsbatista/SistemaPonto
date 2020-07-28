@@ -29,6 +29,8 @@ import { AdministrativoComponent } from './components/administrativo/lista/admin
 import { AdministrativoFormComponent } from './components/administrativo/form/administrativo-form.component';
 import { MovimentacaoComponent } from './components/movimentacao/lista/movimentacao.component';
 import { MovimentacaoFormComponent } from './components/movimentacao/form/movimentacao-form.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { MovimentacaoFormComponent } from './components/movimentacao/form/movime
     AdministrativoComponent, 
     AdministrativoFormComponent, 
     MovimentacaoComponent, 
-    MovimentacaoFormComponent,  
+    MovimentacaoFormComponent,
+    LoginComponent, 
+    HomeComponent,  
   ],
   imports: [
     BrowserModule,

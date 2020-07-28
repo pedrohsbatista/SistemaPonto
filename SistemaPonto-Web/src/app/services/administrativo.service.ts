@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GenericService } from './generic.service';
 import { HttpClient } from '@angular/common/http';
-import { GlobalConstants } from '../utilities/global-constants';
+import { App } from '../utilities/app';
 import { Administrativo } from '../models/entidades/administrativo';
 
 @Injectable({
@@ -9,6 +9,6 @@ import { Administrativo } from '../models/entidades/administrativo';
 })
 export class AdministrativoService extends GenericService<Administrativo> {
   constructor(protected _http: HttpClient) {
-    super(_http, GlobalConstants.apiUrl + 'administrativo/');
+    super(_http, App.apiUrl + 'administrativo/');
   }
 }

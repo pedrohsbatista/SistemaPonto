@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { GlobalConstants } from '../utilities/global-constants'
+import { App } from '../utilities/app';
 import { Setor } from '../models/entidades/setor';
 import { GenericService } from './generic.service';
 
@@ -11,7 +11,7 @@ import { GenericService } from './generic.service';
 export class SetorService extends GenericService<Setor>{
 
   constructor(protected _http: HttpClient) {
-    super(_http, GlobalConstants.apiUrl + 'setor/');
+    super(_http, App.apiUrl + 'setor/');
   }
 
 }

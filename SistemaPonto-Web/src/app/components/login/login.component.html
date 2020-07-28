@@ -1,0 +1,21 @@
+<div class="container">
+    <mat-card class="card-size">
+        <form [formGroup]="loginForm" (ngSubmit)="logar()">
+                <p>
+                    <mat-form-field style="width:  100%;">
+                        <mat-label>Login</mat-label>
+                        <input matInput formControlName="login">
+                    </mat-form-field>
+                </p>
+                <p>
+                <mat-form-field style="width: 100%;">
+                    <mat-label>Senha</mat-label>
+                    <input matInput formControlName="senha">
+                </mat-form-field>
+            </p>
+            <p>
+                <button mat-raised-button style="width: 100%;">Entrar</button>
+            </p>
+        </form>
+    </mat-card>
+</div>
