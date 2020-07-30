@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from '../../services/login.service';
-import { App } from 'src/app/utilities/app';
+import { App } from '../../utilities/app'; 
+import { NotificationService } from '../../utilities/notification.service'; 
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ import { App } from 'src/app/utilities/app';
 export class LoginComponent implements OnInit {
   
   loginForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginService) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginService,
+    private notification: NotificationService) {
      this.createLoginForm();
   }
 
@@ -31,6 +33,8 @@ export class LoginComponent implements OnInit {
       App.usuario = success.usuario;
       window.localStorage.setItem('token', success.token);
       this.router.navigate(['/setor']);
+    }, (response) => {
+      this.notification.openSnackBar(response.error);
     });
   }
 }

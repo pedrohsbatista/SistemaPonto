@@ -31,6 +31,8 @@ import { MovimentacaoComponent } from './components/movimentacao/lista/movimenta
 import { MovimentacaoFormComponent } from './components/movimentacao/form/movimentacao-form.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +47,7 @@ import { HomeComponent } from './components/home/home.component';
     MovimentacaoComponent, 
     MovimentacaoFormComponent,
     LoginComponent, 
-    HomeComponent,  
+    HomeComponent, 
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,8 @@ import { HomeComponent } from './components/home/home.component';
     MatMenuModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: CustomPaginator() },

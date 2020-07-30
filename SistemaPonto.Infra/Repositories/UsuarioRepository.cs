@@ -15,7 +15,7 @@ namespace SistemaPonto.Infra.Repositories
 
         public async Task<Usuario> ReadByLogin(LoginView loginVm)
         {
-          return await _dataContext.Usuarios.SingleAsync(x => x.Login == loginVm.Login && x.Senha == loginVm.Senha);
+          return await _dataContext.Usuarios.SingleOrDefaultAsync(x => x.Login == loginVm.Login && x.Senha == loginVm.Senha);
         }    
     }  
 }

@@ -18,6 +18,11 @@ namespace SistemaPonto.Api.Controllers{
         public async Task<ActionResult<TokenView>> Login([FromBody] LoginView loginVm)
         {
             var usuario = await _usuarioService.ReadByLogin(loginVm);
+
+            if(usuario == null)
+            {
+               return NotFound("Login e/ou Senha inválidos");
+            }
             
             var token = TokenService.GenerateToken(usuario);
 
