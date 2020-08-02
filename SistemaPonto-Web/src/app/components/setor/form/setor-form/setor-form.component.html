@@ -9,8 +9,10 @@
         <p>
             <mat-form-field style="width: 50%;">
                 <mat-label>Nome</mat-label>
-                <input matInput formControlName="nome">
-            </mat-form-field>
+                <input matInput formControlName="nome">                  
+                <mat-error *ngIf="setorForm.controls.nome.errors?.required">O campo nome é obrigatório</mat-error>        
+                <mat-error *ngIf="setorForm.controls.nome.errors?.maxlength">O campo nome deve ter no máximo 100 caracteres</mat-error>                 
+            </mat-form-field>         
         </p>
         <p>
             <button mat-raised-button>Salvar</button>

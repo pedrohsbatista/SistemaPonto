@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from  '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from  '@angular/forms';
 import { SetorService } from 'src/app/services/setor.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
@@ -21,30 +21,32 @@ export class SetorFormComponent implements OnInit {
   ngOnInit(): void {
     if(this.activatedRoute.snapshot.params.id){
       this.setorService.getById(this.activatedRoute.snapshot.params.id).subscribe((setor: Setor) => {
-        this.setorForm = this.formBuilder.group({  
-          id: setor.id,  
-          nome: setor.nome     
-        });
+        this.setorForm.controls['id'].setValue(setor.id);
+        this.setorForm.controls['nome'].setValue(setor.nome);         
       });    
     }   
   }
 
   createSetorForm(){
-      this.setorForm = this.formBuilder.group({    
-        nome: undefined     
+      this.setorForm = this.formBuilder.group({ 
+        id: undefined,   
+        nome: [undefined, [Validators.required, Validators.maxLength(100)]]
       });       
   }
 
   save() {
-    var dados = this.setorForm.value;
-    if (dados.id){
-      this.setorService.put(this.setorForm.value).subscribe((success) => {
-        this.router.navigate(['/setor']);
-      });;
-    } else {
-      this.setorService.post(this.setorForm.value).subscribe((success) => {
-        this.router.navigate(['/setor']);
-      });;
+    if(this.setorForm.valid){
+      var dados = this.setorForm.value;
+      if (dados.id){
+        this.setorService.put(this.setorForm.value).subscribe((success) => {
+          this.router.navigate(['/setor']);
+        });;
+      } else {
+        this.setorService.post(this.setorForm.value).subscribe((success) => {
+          this.router.navigate(['/setor']);
+        });;
+      }
     }
+    
   }
 }

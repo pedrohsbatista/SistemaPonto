@@ -1,7 +1,9 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaPonto.Domain.Entities {
     public class EntidadeBase {
-        public Guid Id { get; set;}
+        [Column("id")]
+        public Guid? Id { get; set;}
     }
 }

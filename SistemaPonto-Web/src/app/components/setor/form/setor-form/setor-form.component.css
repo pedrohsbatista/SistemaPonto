@@ -5,3 +5,7 @@
 .form-title > h2 {
     margin-top: 2px;
 }
+
+.mat-error{
+  font-size: 15px;
+}
