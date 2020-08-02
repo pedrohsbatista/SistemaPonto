@@ -32,6 +32,7 @@ import { MovimentacaoFormComponent } from './components/movimentacao/form/movime
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ValidatorFormComponent } from './utilities/validator-form/validator-form.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MovimentacaoFormComponent,
     LoginComponent, 
     HomeComponent, 
+    ValidatorFormComponent, 
   ],
   imports: [
     BrowserModule,
