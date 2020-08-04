@@ -13,31 +13,31 @@ namespace SistemaPonto.Infra.Repositories {
             _dataContext = dataContext;
         }
       
-        public async Task<T> Create(T entidade)
+        public virtual async Task<T> Create(T entidade)
         {
             _dataContext.Set<T>().Add(entidade);
             await _dataContext.SaveChangesAsync();    
             return entidade;
         }
 
-        public async Task<List<T>> Read()
+        public virtual async Task<List<T>> Read()
         {
             return await _dataContext.Set<T>().ToListAsync();             
         }
 
-        public async Task<T> ReadById(Guid id)
+        public virtual async Task<T> ReadById(Guid id)
         {
             return await _dataContext.Set<T>().FindAsync(id);             
         }
 
-        public async Task<T> Update(T entidade)
+        public virtual async Task<T> Update(T entidade)
         {
             _dataContext.Entry(entidade).State = EntityState.Modified;
             await _dataContext.SaveChangesAsync();    
             return entidade;
         }
 
-        public async Task<T> Delete(Guid id)
+        public virtual async Task<T> Delete(Guid id)
         {
            var entidade = await ReadById(id);
            _dataContext.Set<T>().Remove(entidade);

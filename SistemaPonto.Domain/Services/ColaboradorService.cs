@@ -3,7 +3,7 @@ using SistemaPonto.Domain.IRepository;
 
 namespace SistemaPonto.Domain.Services {
     public class ColaboradorService : GenericService<Colaborador> {
-        public ColaboradorService(IGenericRepository<Colaborador> repository) : base(repository) {           
+        public ColaboradorService(IColaboradorRepository repository) : base(repository) {           
         }
     }
 }

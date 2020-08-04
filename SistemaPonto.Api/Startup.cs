@@ -33,13 +33,24 @@ namespace SistemaPonto.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           services.AddControllers();           
-           services.AddDbContext<DataContext>(options => options.UseNpgsql(Configuration.GetConnectionString("ConnectionString")));
-           services.AddTransient(typeof(GenericService<>));            
-           services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-           services.AddTransient<UsuarioService>();
-           services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+           services.AddControllers().AddNewtonsoftJson();   
 
+           services.AddDbContext<DataContext>(options => options.UseNpgsql(Configuration.GetConnectionString("ConnectionString")));          
+           
+           services.AddTransient(typeof(GenericService<>));           
+           services.AddTransient<AdministrativoService>();
+           services.AddTransient<ColaboradorService>();
+           services.AddTransient<MovimentacaoService>();
+           services.AddTransient<SetorService>();
+           services.AddTransient<UsuarioService>();
+   
+           services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+           services.AddTransient<IAdministrativoRepository, AdministrativoRepository>();
+           services.AddTransient<IColaboradorRepository, ColaboradorRepository>();
+           services.AddTransient<IMovimentacaoRepository, MovimentacaoRepository>();
+           services.AddTransient<ISetorRepository, SetorRepository>();
+           services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+  
            services.AddAuthentication(options => {
               options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
               options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -66,7 +77,7 @@ namespace SistemaPonto.Api
            services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.InvalidModelStateResponseFactory = actionContext => new BadRequestObjectResult(actionContext.ModelState);
-            });                                                          
+            });                  
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

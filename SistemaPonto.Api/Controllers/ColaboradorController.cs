@@ -7,7 +7,7 @@ namespace SistemaPonto.Api {
     [ApiController]
     [Route("api/[controller]")]
     public class ColaboradorController : GenericController<Colaborador> {
-        public ColaboradorController(GenericService<Colaborador> service) : base(service){           
+        public ColaboradorController(ColaboradorService service) : base(service){           
         }       
     }
 }

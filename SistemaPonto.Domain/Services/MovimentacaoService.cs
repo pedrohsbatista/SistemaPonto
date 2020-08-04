@@ -3,7 +3,7 @@ using SistemaPonto.Domain.IRepository;
 
 namespace SistemaPonto.Domain.Services {
     public class MovimentacaoService : GenericService<Movimentacao> {
-        public MovimentacaoService(IGenericRepository<Movimentacao> repository) : base(repository) {           
+        public MovimentacaoService(IMovimentacaoRepository repository) : base(repository) {           
         }
     }
 }

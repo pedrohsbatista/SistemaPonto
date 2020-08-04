@@ -5,3 +5,7 @@
 .form-title > h2 {
     margin-top: 2px;
 }
+
+.form{
+  height: calc(82.5vh);
+}

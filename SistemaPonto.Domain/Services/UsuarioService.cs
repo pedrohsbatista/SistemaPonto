@@ -8,8 +8,8 @@ namespace SistemaPonto.Domain.Services {
 
         private readonly IUsuarioRepository _usuarioRepository;
          
-        public UsuarioService(IGenericRepository<Usuario> repository, IUsuarioRepository usuarioRepository) : base(repository){            
-           _usuarioRepository = usuarioRepository;
+        public UsuarioService(IUsuarioRepository repository) : base(repository){            
+           _usuarioRepository = repository;
         }
 
         public async Task<Usuario> ReadByLogin(LoginView loginVm)

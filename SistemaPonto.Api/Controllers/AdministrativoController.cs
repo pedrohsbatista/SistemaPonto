@@ -6,7 +6,7 @@ namespace SistemaPonto.Api {
     [ApiController]
     [Route("api/[controller]")]
     public class AdministrativoController : GenericController<Administrativo> {
-        public AdministrativoController(GenericService<Administrativo> service) : base(service){           
+        public AdministrativoController(AdministrativoService service) : base(service){           
         }      
     }
 }

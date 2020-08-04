@@ -6,7 +6,7 @@ namespace SistemaPonto.Api {
     [ApiController]
     [Route("api/[controller]")]
     public class MovimentacaoController : GenericController<Movimentacao> {
-        public MovimentacaoController(GenericService<Movimentacao> service) : base(service){           
+        public MovimentacaoController(MovimentacaoService service) : base(service){           
         }      
     }
 }

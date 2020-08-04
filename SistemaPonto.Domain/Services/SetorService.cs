@@ -3,7 +3,7 @@ using SistemaPonto.Domain.IRepository;
 
 namespace SistemaPonto.Domain.Services {
     public class SetorService : GenericService<Setor> {
-        public SetorService(IGenericRepository<Setor> repository) : base(repository) {           
+        public SetorService(ISetorRepository repository) : base(repository) {           
         }
     }
 }
