@@ -36,7 +36,6 @@ export class MovimentacaoFormComponent implements OnInit {
 
   save() {
     var dados = this.movimentacaoForm.value;
-    debugger;
     dados.dataMovimentacao = new Date(dados.dataMovimentacao).toISOString();
     if (dados.id){
       this.movimentacaoService.put(this.movimentacaoForm.value).subscribe((success) => {

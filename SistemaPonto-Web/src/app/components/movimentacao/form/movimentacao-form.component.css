@@ -1,11 +1,20 @@
-.form-title{
-  display: flex;
-}
-
-.form-title > h2 {
-  margin-top: 2px;
-}
-
-.form{
+.form {
   height: calc(82.5vh);
+}
+
+.form-top {
+  display: flow-root;
+}
+
+.actions-left {
+  display: flex;
+  float: left;
+}
+
+.actions-right{
+  float: right;
+}
+
+.actions-left > h2 {
+  margin-top: 2px;
 }

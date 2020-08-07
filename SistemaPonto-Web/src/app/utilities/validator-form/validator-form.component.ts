@@ -13,5 +13,4 @@ export class ValidatorFormComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

@@ -1,19 +1,180 @@
 <mat-card class="form">
-    <div class="form-title">
-        <a mat-icon-button routerLink="/colaborador">
-            <mat-icon>keyboard_backspace</mat-icon>            
-        </a> 
-        <h2>Colaborador</h2>
-    </div>         
-    <form [formGroup]="colaboradorForm" (ngSubmit)="save()">
-        <p>
+    <div class="form-top">       
+        <div class="actions-left">
+            <a mat-icon-button routerLink="/colaborador">
+                <mat-icon>keyboard_backspace</mat-icon>            
+            </a> 
+            <h2>Colaborador</h2>
+        </div>   
+        <div class="actions-right">
+            <button mat-raised-button form="colaboradorForm">Salvar</button>
+        </div>    
+    </div>       
+    <form id="colaboradorForm" [formGroup]="colaboradorForm" (ngSubmit)="save()">
+        <p class="row">
             <mat-form-field style="width: 50%;">
                 <mat-label>Nome</mat-label>
                 <input matInput formControlName="nome">
+                <mat-error>
+                    <app-validator-form [field]="colaboradorForm.controls.nome"></app-validator-form>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="width: 10%;">
+                <mat-label>Data Nascimento</mat-label>
+                <input type="date" matInput formControlName="dataNascimento">
+                <mat-error>
+                    <app-validator-form [field]="colaboradorForm.controls.dataNascimento"></app-validator-form>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="width: 10%;">
+                <mat-label>CPF</mat-label>
+                <input matInput formControlName="cpf">
+                <mat-error>
+                    <app-validator-form [field]="colaboradorForm.controls.cpf"></app-validator-form>
+                </mat-error>
             </mat-form-field>
         </p>
-        <p>
-            <button mat-raised-button>Salvar</button>
-        </p>    
+        <p class="row">            
+            <mat-form-field style="width: 50%;">
+                <mat-label>Login</mat-label>
+                <input matInput formControlName="login">
+                <mat-error>
+                    <app-validator-form [field]="colaboradorForm.controls.login"></app-validator-form>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="width: 10%;">
+                <mat-label>Senha</mat-label>
+                <input type="password" matInput formControlName="senha" (change)="apllyValidation()">
+                <mat-error>
+                    <app-validator-form [field]="colaboradorForm.controls.senha"></app-validator-form>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="width: 10%;">
+                <mat-label>Confirmar Senha</mat-label>
+                <input type="password" matInput formControlName="confirmarSenha">
+                <mat-error>
+                    <app-validator-form  [field]="colaboradorForm.controls.confirmarSenha"></app-validator-form>
+                </mat-error>            
+            </mat-form-field>
+        </p>
+        <p class="row">
+            <mat-form-field style="width: 10%;">
+                <mat-label>CEP</mat-label>
+                <input matInput formControlName="cep">
+                <mat-error>
+                    <app-validator-form [field]="colaboradorForm.controls.cep"></app-validator-form>
+                </mat-error>
+            </mat-form-field> 
+            <mat-form-field style="width: 20%;">
+                <mat-label>Logradouro</mat-label>
+                <input matInput formControlName="logradouro">
+                <mat-error>
+                    <app-validator-form [field]="colaboradorForm.controls.logradouro"></app-validator-form>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="width: 10%;">
+                <mat-label>Número</mat-label>
+                <input matInput formControlName="numeroLogradouro">
+                <mat-error>
+                    <app-validator-form [field]="colaboradorForm.controls.numeroLogradouro"></app-validator-form>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="width: 18%;">
+                <mat-label>Bairro</mat-label>
+                <input matInput formControlName="bairro">
+                <mat-error>
+                    <app-validator-form [field]="colaboradorForm.controls.bairro"></app-validator-form>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="width: 18%;">
+                <mat-label>Município</mat-label>
+                <input matInput formControlName="municipio">
+                <mat-error>
+                    <app-validator-form [field]="colaboradorForm.controls.municipio"></app-validator-form>
+                </mat-error>
+            </mat-form-field> 
+            <mat-form-field style="width: 10%;">
+                <mat-label>UF</mat-label>
+                <input matInput formControlName="uf">
+                <mat-error>
+                    <app-validator-form [field]="colaboradorForm.controls.uf"></app-validator-form>
+                </mat-error>
+            </mat-form-field>                           
+        </p>
+        <p class="row">             
+            <mat-form-field style="width: 15%;">
+                <mat-label>Complemento</mat-label>
+                <input matInput formControlName="complemento">
+                <mat-error>
+                    <app-validator-form [field]="colaboradorForm.controls.complemento"></app-validator-form>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="width: 15%;">
+                <mat-label>E-mail</mat-label>
+                <input type="email" matInput formControlName="email">
+                <mat-error>
+                    <app-validator-form [field]="colaboradorForm.controls.email"></app-validator-form>
+                </mat-error>
+            </mat-form-field>  
+            <mat-form-field style="width: 10%;">
+                <mat-label>Telefone</mat-label>
+                <input type="tel" matInput formControlName="telefone">
+                <mat-error>
+                    <app-validator-form [field]="colaboradorForm.controls.telefone"></app-validator-form>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="width: 10%;">
+                <mat-label>Celular</mat-label>
+                <input type="tel" matInput formControlName="celular">
+                <mat-error>
+                    <app-validator-form [field]="colaboradorForm.controls.celular"></app-validator-form>
+                </mat-error>
+            </mat-form-field>  
+            <mat-form-field appearance="fill" style="width: 18%;">
+                <mat-label>Setor</mat-label>
+                <mat-select name="setor">
+                  <mat-option></mat-option>
+                  <mat-option *ngFor="let setor of setores" [value]="setor">
+                    {{setor.nome}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field style="width: 18%;">
+                <mat-label>Cargo</mat-label>
+                <input matInput formControlName="cargo">
+                <mat-error>
+                    <app-validator-form [field]="colaboradorForm.controls.cargo"></app-validator-form>
+                </mat-error>
+            </mat-form-field>                               
+        </p>
+       <p class="row">
+        <mat-table [dataSource]="horarios" class="mat-elevation-z1">         
+            <ng-container matColumnDef="diaSemana">
+              <mat-header-cell *matHeaderCellDef>Dia da Semana</mat-header-cell>
+              <mat-cell *matCellDef="let row">{{row.diaSemana}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="inicio">
+                <mat-header-cell *matHeaderCellDef>Início</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.inicio}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="fim">
+                <mat-header-cell *matHeaderCellDef>Fim</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{row.fim}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="commands">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <button mat-button (click)="deleteHorario(row.id)">        
+                        <mat-icon>delete</mat-icon>                    
+                    </button>  
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+       </p>
+  
     </form>
 </mat-card>

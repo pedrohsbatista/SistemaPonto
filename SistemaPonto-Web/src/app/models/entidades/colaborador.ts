@@ -3,7 +3,20 @@ import { Setor } from './setor';
 import { Horario } from './horario';
 
 export interface Colaborador extends Usuario {
-   setor : Setor    
-   horarios : Array<Horario>
-   imagem : ArrayBuffer
+   dataNascimento : Date,
+   cpf: string,
+   imagem : ArrayBuffer,
+   setor : Setor,
+   cargo: string,    
+   horarios : Array<Horario>,
+   logradouro: string,
+   numeroLogradouro: string,
+   bairro: string,
+   municipio: string,
+   uf: string,
+   cep: string,
+   complemento: string,
+   email: string,
+   telefone: string,
+   celular: string
 }

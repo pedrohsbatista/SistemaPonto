@@ -1,11 +1,16 @@
 <mat-card class="form">
-    <div class="form-title">
-        <a mat-icon-button routerLink="/administrativo">
-            <mat-icon>keyboard_backspace</mat-icon>            
-        </a> 
-        <h2>Administrativo</h2>
-    </div>         
-    <form [formGroup]="administrativoForm" (ngSubmit)="save()">
+    <div class="form-top">
+        <div class="actions-left">
+            <a mat-icon-button routerLink="/administrativo">
+                <mat-icon>keyboard_backspace</mat-icon>            
+            </a> 
+            <h2>Administrativo</h2>
+        </div>        
+        <div class="actions-right">
+            <button mat-raised-button form="administrativoForm">Salvar</button>
+        </div>     
+    </div>        
+    <form id="administrativoForm" [formGroup]="administrativoForm" (ngSubmit)="save()">
         <p>
             <mat-form-field style="width: 50%;">
                 <mat-label>Nome</mat-label>
@@ -26,7 +31,7 @@
 
             <mat-form-field style="width: 20%;">
                 <mat-label>Senha</mat-label>
-                <input matInput formControlName="senha" (change)="apllyValidation()">
+                <input type="password" matInput formControlName="senha" (change)="apllyValidation()">
                 <mat-error>
                     <app-validator-form [field]="administrativoForm.controls.senha"></app-validator-form>
                 </mat-error>
@@ -34,14 +39,11 @@
 
             <mat-form-field style="width: 20%;">
                 <mat-label>Confirmar Senha</mat-label>
-                <input matInput formControlName="confirmarSenha">
+                <input type="password" matInput formControlName="confirmarSenha">
                 <mat-error>
-                    <app-validator-form [field]="administrativoForm.controls.confirmarSenha"></app-validator-form>
+                    <app-validator-form  [field]="administrativoForm.controls.confirmarSenha"></app-validator-form>
                 </mat-error>            
             </mat-form-field>
-        </p>
-        <p>
-            <button mat-raised-button>Salvar</button>
-        </p>    
+        </p>   
     </form>
 </mat-card>

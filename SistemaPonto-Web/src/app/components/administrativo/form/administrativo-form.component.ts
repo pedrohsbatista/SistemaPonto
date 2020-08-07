@@ -33,7 +33,7 @@ export class AdministrativoFormComponent implements OnInit {
         id: undefined,
         nome: [undefined, [Validators.required, Validators.maxLength(100)]],
         login: [undefined, [Validators.required, Validators.maxLength(100)]] ,
-        senha: [undefined, [Validators.required, Validators.maxLength(100), Validators.minLength(6)]],
+        senha: [undefined, [Validators.required, Validators.maxLength(50), Validators.minLength(6)]],
         confirmarSenha: [undefined, [confirmarSenhaValidator]]           
       }); 
   }

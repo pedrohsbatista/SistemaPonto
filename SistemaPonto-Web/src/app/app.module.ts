@@ -33,6 +33,8 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ValidatorFormComponent } from './utilities/validator-form/validator-form.component';
+import { MatSelectModule } from '@angular/material/select';
+
 
 
 @NgModule({
@@ -69,7 +71,8 @@ import { ValidatorFormComponent } from './utilities/validator-form/validator-for
     ReactiveFormsModule,
     MatDialogModule,
     MatCardModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSelectModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: CustomPaginator() },

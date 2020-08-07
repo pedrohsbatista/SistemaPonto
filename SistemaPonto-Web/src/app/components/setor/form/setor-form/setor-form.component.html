@@ -1,11 +1,16 @@
 <mat-card class="form">
-    <div class="form-title">
-        <a mat-icon-button routerLink="/setor">
-            <mat-icon>keyboard_backspace</mat-icon>            
-        </a> 
-        <h2>Setor</h2>
-    </div>         
-    <form [formGroup]="setorForm" (ngSubmit)="save()">
+    <div class="form-top">
+        <div class="actions-left">
+            <a mat-icon-button routerLink="/setor">
+                <mat-icon>keyboard_backspace</mat-icon>            
+            </a> 
+            <h2>Setor</h2>
+        </div>        
+        <div class="actions-right">
+            <button mat-raised-button form="setorForm">Salvar</button>
+        </div>     
+    </div>      
+    <form id="setorForm" [formGroup]="setorForm" (ngSubmit)="save()">
         <p>
             <mat-form-field style="width: 50%;">
                 <mat-label>Nome</mat-label>
@@ -14,9 +19,6 @@
                     <app-validator-form [field]="setorForm.controls.nome"></app-validator-form>
                 </mat-error>                
             </mat-form-field>         
-        </p>
-        <p>
-            <button mat-raised-button>Salvar</button>
-        </p>    
+        </p>  
     </form>
 </mat-card>
