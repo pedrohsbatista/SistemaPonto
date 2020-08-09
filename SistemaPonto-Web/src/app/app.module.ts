@@ -34,8 +34,8 @@ import { HomeComponent } from './components/home/home.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ValidatorFormComponent } from './utilities/validator-form/validator-form.component';
 import { MatSelectModule } from '@angular/material/select';
-
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { HorarioFormComponent } from './components/colaborador/horario-form/horario-form.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +51,7 @@ import { MatSelectModule } from '@angular/material/select';
     MovimentacaoFormComponent,
     LoginComponent, 
     HomeComponent, 
-    ValidatorFormComponent, 
+    ValidatorFormComponent, HorarioFormComponent    
   ],
   imports: [
     BrowserModule,
@@ -72,7 +72,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatDialogModule,
     MatCardModule,
     MatSnackBarModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: CustomPaginator() },

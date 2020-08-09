@@ -148,7 +148,7 @@
             </mat-form-field>                               
         </p>
        <p class="row">
-        <mat-table [dataSource]="horarios" class="mat-elevation-z1">         
+        <mat-table [dataSource]="horarios" class="table">         
             <ng-container matColumnDef="diaSemana">
               <mat-header-cell *matHeaderCellDef>Dia da Semana</mat-header-cell>
               <mat-cell *matCellDef="let row">{{row.diaSemana}}</mat-cell>
@@ -163,11 +163,11 @@
             </ng-container>
 
             <ng-container matColumnDef="commands">
-                <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                <mat-cell *matCellDef="let row">
-                    <button mat-button (click)="deleteHorario(row.id)">        
-                        <mat-icon>delete</mat-icon>                    
-                    </button>  
+                <mat-header-cell *matHeaderCellDef>
+                    <mat-icon (click)="openHorarioForm()">add</mat-icon>   
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row">   
+                    <mat-icon (click)="deleteHorario(row.id)">delete</mat-icon>                    
                 </mat-cell>
             </ng-container>
 

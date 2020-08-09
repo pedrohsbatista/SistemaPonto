@@ -6,8 +6,10 @@ import { Colaborador } from 'src/app/models/entidades/colaborador';
 import { SetorService } from 'src/app/services/setor.service';
 import { Setor } from 'src/app/models/entidades/setor';
 import { Horario } from 'src/app/models/entidades/horario';
-import { ViewFlags } from '@angular/compiler/src/core';
 import { Guid } from 'guid-typescript';
+import { MatTableDataSource } from '@angular/material/table';
+import { HorarioFormComponent } from '../horario-form/horario-form.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-colaborador-form',
@@ -17,15 +19,17 @@ import { Guid } from 'guid-typescript';
 export class ColaboradorFormComponent implements OnInit {
   colaboradorForm: FormGroup;
   setores: Setor[];
-  displayedColumns: string[] = ['diaSemana', 'inicio', 'fim'];
-  horarios: Horario[];
+  displayedColumns: string[] = ['diaSemana', 'inicio', 'fim', 'commands'];
+  horarios: MatTableDataSource<Horario>;
 
   constructor(private formBuilder: FormBuilder, private colaboradorService: ColaboradorService, 
-    private router: Router, private activatedRoute: ActivatedRoute, private setorService: SetorService) { 
+    private router: Router, private activatedRoute: ActivatedRoute, private setorService: SetorService,
+    private dialog: MatDialog) { 
     this.createColaboradorForm();    
     this.setorService.get().subscribe((setores: Setor[]) => {
       this.setores = setores;
     });
+    this.horarios = new MatTableDataSource([]);
   }
 
   ngOnInit(): void {
@@ -39,7 +43,7 @@ export class ColaboradorFormComponent implements OnInit {
         this.colaboradorForm.controls['imagem'].setValue(colaborador.imagem); 
         this.colaboradorForm.controls['setor'].setValue(colaborador.setor); 
         this.colaboradorForm.controls['cargo'].setValue(colaborador.cargo); 
-        this.horarios = colaborador.horarios;
+        this.horarios.data = colaborador.horarios;
         this.colaboradorForm.controls['logradouro'].setValue(colaborador.logradouro); 
         this.colaboradorForm.controls['numeroLogradouro'].setValue(colaborador.numeroLogradouro); 
         this.colaboradorForm.controls['bairro'].setValue(colaborador.bairro); 
@@ -67,7 +71,6 @@ export class ColaboradorFormComponent implements OnInit {
         imagem: undefined,
         setor: [undefined, [Validators.required]],
         cargo: [undefined, [Validators.required, Validators.maxLength(100)]],
-        horarios: this.horarios,
         logradouro: [undefined, [Validators.maxLength(100)]],
         numeroLogradouro: [undefined, [Validators.maxLength(10)]],
         bairro: [undefined, [Validators.maxLength(100)]],
@@ -110,9 +113,27 @@ export class ColaboradorFormComponent implements OnInit {
     }
   }
 
+  openHorarioForm(){
+    const dialogRef = this.dialog.open(HorarioFormComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.addHorario(result);    
+      }          
+    });
+  }
+
+  addHorario(horarios: Horario[]){
+    var data = this.horarios.data;
+    data = data.concat(horarios);
+    this.horarios.data = data;
+  }
+
   deleteHorario(id: Guid){
-    var index = this.horarios.findIndex(horario => horario.id == id);
-    this.horarios.splice(index, 1);
+    var horarios = this.horarios.data;
+    var index = this.horarios.data.findIndex(horario => horario.id == id);
+    this.horarios.data.splice(index, 1);
+    this.horarios.data = horarios;
   }
 }
 

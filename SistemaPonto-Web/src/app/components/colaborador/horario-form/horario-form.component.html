@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Adicione um horário</h2>
+<mat-dialog-content>
+    <form [formGroup]="horarioForm">
+        <p class="row">
+            <label formArrayName="dias" *ngFor="let dia of diasFormArray.controls; let i = index">
+              <mat-checkbox [formControlName]="i">{{dias[i].text}}</mat-checkbox>                     
+            </label>   
+            <mat-error *ngIf="this.isValidate">
+                <app-validator-form [field]="horarioForm.controls.dias"></app-validator-form>
+            </mat-error>          
+        </p>   
+        <p class="row">
+            <mat-form-field style="width: 45%;">
+                <mat-label>Início</mat-label>
+                <input type="time" matInput formControlName="inicio">               
+                <mat-error>
+                    <app-validator-form [field]="horarioForm.controls.inicio"></app-validator-form>
+                </mat-error>    
+            </mat-form-field>   
+            <mat-form-field style="width: 45%;">
+                <mat-label>Fim</mat-label>
+                <input type="time" matInput formControlName="fim">   
+                <mat-error>
+                    <app-validator-form [field]="horarioForm.controls.fim"></app-validator-form>
+                </mat-error>            
+            </mat-form-field>  
+        </p> 
+        <p class="buttons-actions">
+            <button mat-raised-button (click)="cancelar()">Cancelar</button>
+            <button mat-raised-button (click)="adicionar()">Adicionar</button>
+        </p>
+    </form>  
+</mat-dialog-content>

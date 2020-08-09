@@ -22,3 +22,8 @@
 .row > .mat-form-field:not(:first-child) { 
   margin-left: 30px;
 }
+
+.table{
+  overflow: scroll;
+  height: 200px;
+}

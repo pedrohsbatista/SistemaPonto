@@ -1,0 +1,15 @@
+.row > .mat-form-field:not(:first-child) { 
+    margin-left: 30px;
+}
+
+.buttons-actions {
+    float: right;    
+}
+
+.buttons-actions > button{
+    margin-left: 10px;
+}
+
+.mat-checkbox {
+  margin-left: 5px;
+}
