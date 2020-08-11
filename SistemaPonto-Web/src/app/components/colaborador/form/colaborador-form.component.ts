@@ -10,6 +10,7 @@ import { Guid } from 'guid-typescript';
 import { MatTableDataSource } from '@angular/material/table';
 import { HorarioFormComponent } from '../horario-form/horario-form.component';
 import { MatDialog } from '@angular/material/dialog';
+import { WebcamImage } from 'ngx-webcam';
 
 @Component({
   selector: 'app-colaborador-form',
@@ -21,6 +22,7 @@ export class ColaboradorFormComponent implements OnInit {
   setores: Setor[];
   displayedColumns: string[] = ['diaSemana', 'inicio', 'fim', 'commands'];
   horarios: MatTableDataSource<Horario>;
+  webcamImage: WebcamImage = null;
 
   constructor(private formBuilder: FormBuilder, private colaboradorService: ColaboradorService, 
     private router: Router, private activatedRoute: ActivatedRoute, private setorService: SetorService,
@@ -134,6 +136,10 @@ export class ColaboradorFormComponent implements OnInit {
     var index = this.horarios.data.findIndex(horario => horario.id == id);
     this.horarios.data.splice(index, 1);
     this.horarios.data = horarios;
+  }
+
+  handleImage(webcamImage: WebcamImage){
+    this.webcamImage = webcamImage;
   }
 }
 

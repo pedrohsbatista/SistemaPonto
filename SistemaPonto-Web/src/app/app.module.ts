@@ -36,6 +36,8 @@ import { ValidatorFormComponent } from './utilities/validator-form/validator-for
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HorarioFormComponent } from './components/colaborador/horario-form/horario-form.component';
+import { WebcamModule } from 'ngx-webcam';
+import { CameraComponent } from './utilities/camera/camera.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { HorarioFormComponent } from './components/colaborador/horario-form/hora
     MovimentacaoFormComponent,
     LoginComponent, 
     HomeComponent, 
-    ValidatorFormComponent, HorarioFormComponent    
+    ValidatorFormComponent,
+    HorarioFormComponent,
+    CameraComponent    
   ],
   imports: [
     BrowserModule,
@@ -73,7 +77,8 @@ import { HorarioFormComponent } from './components/colaborador/horario-form/hora
     MatCardModule,
     MatSnackBarModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    WebcamModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: CustomPaginator() },

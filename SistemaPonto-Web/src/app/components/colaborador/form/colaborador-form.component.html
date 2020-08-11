@@ -11,6 +11,10 @@
         </div>    
     </div>       
     <form id="colaboradorForm" [formGroup]="colaboradorForm" (ngSubmit)="save()">
+       <app-camera (pictureTaken)="handleImage($event)"></app-camera>           
+        <div class="snapshot" *ngIf="webcamImage">
+           <img [src]="webcamImage.imageAsDataUrl" />
+        </div>
         <p class="row">
             <mat-form-field style="width: 50%;">
                 <mat-label>Nome</mat-label>
