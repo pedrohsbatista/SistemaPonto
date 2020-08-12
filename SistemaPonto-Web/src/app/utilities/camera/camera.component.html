@@ -1,24 +1,22 @@
-<div style="text-align: center">
-    <div>  
-    <webcam [height]="500" [width]="500"
-    [trigger]="triggerObservable"
-    (imageCapture)="handleImage($event)"
-    *ngIf="showWebcam"  
-    [allowCameraSwitch]="allowCameraSwitch"
-    [switchCamera]="nextWebcamObservable"
-    [videoOptions]="videoOptions"
-    (cameraSwitched)="cameraWasSwitched($event)"
-    (initError)="handleInitError($event)"
-    ></webcam>
-    <br />
-    <div class="actionBtn" (click)="triggerSnapshot();"
-    title="Take Picture">Camera</div>
-    <div class="actionBtn" (click)="showNextWebcam(true);"
-    title="Switch Camera">Trocar</div>
-    </div>
-</div>
-<h4 *ngIf="errors.length > 0">Messages:</h4>
-<ul *ngFor="let error of errors"> 
-    <li>{{error | json}}</li>
-</ul>
-
+<h2 mat-dialog-title *ngIf="!capturedImage">Capture a foto</h2>
+<h2 mat-dialog-title *ngIf="capturedImage">Foto capturada</h2>
+<mat-dialog-content>
+        <p *ngIf="!capturedImage">
+            <webcam [height]="270" [width]="305"
+            [trigger]="triggerObservable"
+            (imageCapture)="handleImage($event)"
+            *ngIf="showWebcam"  
+            [allowCameraSwitch]="allowCameraSwitch"
+            [videoOptions]="videoOptions"
+            (initError)="handleInitError($event)"
+            ></webcam>
+        </p>        
+        <p *ngIf="capturedImage">
+            <img [src]="capturedImage" class="captured-image" />
+        </p>
+        <p class="buttons-actions">
+            <button mat-raised-button (click)="cancelar()">Cancelar</button>
+            <button mat-raised-button (click)="tirarFoto()" *ngIf="!capturedImage">Capturar</button>
+            <button mat-raised-button (click)="apagarImagemCapturada()" *ngIf="capturedImage">Capturar Novamente</button>
+        </p>       
+</mat-dialog-content>

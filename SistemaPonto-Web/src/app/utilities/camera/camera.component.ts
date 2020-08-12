@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Subject, Observable } from 'rxjs';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-camera',
@@ -9,22 +10,19 @@ import { Subject, Observable } from 'rxjs';
 })
 export class CameraComponent implements OnInit {
 
-  constructor() { }
- 
+  constructor(public dialogRef: MatDialogRef<CameraComponent>) {    
+  } 
+
   @Output()
   pictureTaken = new EventEmitter<WebcamImage>();
   
   showWebcam = true;
   allowCameraSwitch = true;
   multipleWebcamsAvailable = false;
-  deviceId: string;
-  videoOptions: MediaTrackConstraints;
-  
+  videoOptions: MediaTrackConstraints;  
   errors: WebcamInitError[] = [];
-
   trigger: Subject<void> = new Subject<void>();
- 
-  nextWebcam: Subject<boolean|string> = new Subject<boolean|string>();
+  capturedImage: string;
 
   ngOnInit(): void {
     WebcamUtil.getAvailableVideoInputs().then((mediaDevices: MediaDeviceInfo[]) => {
@@ -32,36 +30,32 @@ export class CameraComponent implements OnInit {
     });
   }
 
-  triggerSnapshot() : void {
-     this.trigger.next();
-  }
-
   toggleWebcam() : void {
     this.showWebcam = !this.showWebcam;
   }
 
   handleInitError(error: WebcamInitError) : void {
-    this.errors.push(error);
-  }
-
-  showNextWebcam(directionOrDeviceId: boolean|string) : void {
-    this.nextWebcam.next(directionOrDeviceId);
+    console.log(error);
   }
 
   handleImage(webcamImage: WebcamImage) : void {
-      this.pictureTaken.emit(webcamImage);
-  }
-
-  cameraWasSwitched(deviceId: string) : void {
-     this.deviceId = deviceId;
+    this.capturedImage = webcamImage.imageAsDataUrl;
+    this.pictureTaken.emit(webcamImage);
   }
    
   get triggerObservable() : Observable<void> {
     return this.trigger.asObservable();
   }
 
-  get nextWebcamObservable(): Observable<boolean|string>
-  {
-    return this.nextWebcam.asObservable();
+  cancelar(){
+    this.dialogRef.close();
+  }
+
+  tirarFoto(){
+    this.trigger.next();
+  } 
+
+  apagarImagemCapturada(){
+    this.capturedImage = null;
   }
 }

@@ -11,6 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { HorarioFormComponent } from '../horario-form/horario-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import { WebcamImage } from 'ngx-webcam';
+import { CameraComponent } from 'src/app/utilities/camera/camera.component';
 
 @Component({
   selector: 'app-colaborador-form',
@@ -22,7 +23,7 @@ export class ColaboradorFormComponent implements OnInit {
   setores: Setor[];
   displayedColumns: string[] = ['diaSemana', 'inicio', 'fim', 'commands'];
   horarios: MatTableDataSource<Horario>;
-  webcamImage: WebcamImage = null;
+  imagem: string;
 
   constructor(private formBuilder: FormBuilder, private colaboradorService: ColaboradorService, 
     private router: Router, private activatedRoute: ActivatedRoute, private setorService: SetorService,
@@ -138,9 +139,15 @@ export class ColaboradorFormComponent implements OnInit {
     this.horarios.data = horarios;
   }
 
-  handleImage(webcamImage: WebcamImage){
-    this.webcamImage = webcamImage;
-  }
+  openCam(){
+     const dialogRef = this.dialog.open(CameraComponent);
+
+     dialogRef.afterClosed().subscribe(result => {
+       if (result) {
+        
+       }
+     });
+  }  
 }
 
 function confirmarSenhaValidator(control: AbstractControl): { [key: string]: string } | null {

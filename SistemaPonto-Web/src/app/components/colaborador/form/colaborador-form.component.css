@@ -27,3 +27,13 @@
   overflow: scroll;
   height: 200px;
 }
+
+.first-row{
+  float: left;
+  margin-right: 35px;
+}
+
+img {
+  height: 130px;
+  width: 130px;
+}

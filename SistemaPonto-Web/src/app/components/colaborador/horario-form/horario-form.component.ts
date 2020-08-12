@@ -28,11 +28,6 @@ export class HorarioFormComponent implements OnInit {
     this.createHorarioForm();
   }
 
-
-  // constructor(
-  //   public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-  //   @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
   ngOnInit(): void {
   }
 

@@ -11,56 +11,59 @@
         </div>    
     </div>       
     <form id="colaboradorForm" [formGroup]="colaboradorForm" (ngSubmit)="save()">
-       <app-camera (pictureTaken)="handleImage($event)"></app-camera>           
-        <div class="snapshot" *ngIf="webcamImage">
-           <img [src]="webcamImage.imageAsDataUrl" />
-        </div>
-        <p class="row">
-            <mat-form-field style="width: 50%;">
-                <mat-label>Nome</mat-label>
-                <input matInput formControlName="nome">
-                <mat-error>
-                    <app-validator-form [field]="colaboradorForm.controls.nome"></app-validator-form>
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field style="width: 10%;">
-                <mat-label>Data Nascimento</mat-label>
-                <input type="date" matInput formControlName="dataNascimento">
-                <mat-error>
-                    <app-validator-form [field]="colaboradorForm.controls.dataNascimento"></app-validator-form>
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field style="width: 10%;">
-                <mat-label>CPF</mat-label>
-                <input matInput formControlName="cpf">
-                <mat-error>
-                    <app-validator-form [field]="colaboradorForm.controls.cpf"></app-validator-form>
-                </mat-error>
-            </mat-form-field>
-        </p>
-        <p class="row">            
-            <mat-form-field style="width: 50%;">
-                <mat-label>Login</mat-label>
-                <input matInput formControlName="login">
-                <mat-error>
-                    <app-validator-form [field]="colaboradorForm.controls.login"></app-validator-form>
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field style="width: 10%;">
-                <mat-label>Senha</mat-label>
-                <input type="password" matInput formControlName="senha" (change)="apllyValidation()">
-                <mat-error>
-                    <app-validator-form [field]="colaboradorForm.controls.senha"></app-validator-form>
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field style="width: 10%;">
-                <mat-label>Confirmar Senha</mat-label>
-                <input type="password" matInput formControlName="confirmarSenha">
-                <mat-error>
-                    <app-validator-form  [field]="colaboradorForm.controls.confirmarSenha"></app-validator-form>
-                </mat-error>            
-            </mat-form-field>
-        </p>
+        <div>
+            <div class="first-row">
+                <img [src]="imagem" onerror="this.src='assets/images/sem-foto.png'" (click)="openCam()" />
+            </div>
+            <div>
+                <p class="row">            
+                    <mat-form-field style="width: 50%;">
+                        <mat-label>Nome</mat-label>
+                        <input matInput formControlName="nome">
+                        <mat-error>
+                            <app-validator-form [field]="colaboradorForm.controls.nome"></app-validator-form>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field style="width: 15%;">
+                        <mat-label>Data Nascimento</mat-label>
+                        <input type="date" matInput formControlName="dataNascimento">
+                        <mat-error>
+                            <app-validator-form [field]="colaboradorForm.controls.dataNascimento"></app-validator-form>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field style="width: 15%;">
+                        <mat-label>CPF</mat-label>
+                        <input matInput formControlName="cpf">
+                        <mat-error>
+                            <app-validator-form [field]="colaboradorForm.controls.cpf"></app-validator-form>
+                        </mat-error>
+                    </mat-form-field>
+                </p>
+                <p class="row">    
+                    <mat-form-field style="width: 50%;">
+                        <mat-label>Login</mat-label>
+                        <input matInput formControlName="login">
+                        <mat-error>
+                            <app-validator-form [field]="colaboradorForm.controls.login"></app-validator-form>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field style="width: 15%;">
+                        <mat-label>Senha</mat-label>
+                        <input type="password" matInput formControlName="senha" (change)="apllyValidation()">
+                        <mat-error>
+                            <app-validator-form [field]="colaboradorForm.controls.senha"></app-validator-form>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field style="width: 15%;">
+                        <mat-label>Confirmar Senha</mat-label>
+                        <input type="password" matInput formControlName="confirmarSenha">
+                        <mat-error>
+                            <app-validator-form  [field]="colaboradorForm.controls.confirmarSenha"></app-validator-form>
+                        </mat-error>            
+                    </mat-form-field>
+                </p>
+            </div>
+        </div>           
         <p class="row">
             <mat-form-field style="width: 10%;">
                 <mat-label>CEP</mat-label>

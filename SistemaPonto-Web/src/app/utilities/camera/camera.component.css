@@ -1,17 +1,16 @@
-.actionBtn {
-    font-size: 4em;
-    cursor: pointer;
+.buttons-actions {
+    float: right;    
 }
 
-.snapshot {
-    text-align: center;    
+.buttons-actions > button{
+    margin-left: 10px;
 }
 
-img {
-    max-width: 800px;
-    max-height: 800px;
+.captured-image{
+    width: 300px;
+    height: 228px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;  
 }
 
-ul.links {
-    padding-bottom: 20px;
-}
