@@ -139,12 +139,15 @@
             </mat-form-field>  
             <mat-form-field appearance="fill" style="width: 18%;">
                 <mat-label>Setor</mat-label>
-                <mat-select name="setor">
+                <mat-select name="setor" [formControl]="colaboradorForm.controls.setor" [compareWith]="compareFunction">
                   <mat-option></mat-option>
                   <mat-option *ngFor="let setor of setores" [value]="setor">
                     {{setor.nome}}
                   </mat-option>
                 </mat-select>
+                <mat-error>
+                    <app-validator-form [field]="colaboradorForm.controls.setor"></app-validator-form>
+                </mat-error>
             </mat-form-field>
             <mat-form-field style="width: 18%;">
                 <mat-label>Cargo</mat-label>

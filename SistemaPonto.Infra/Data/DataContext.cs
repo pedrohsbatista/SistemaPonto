@@ -3,6 +3,12 @@ using SistemaPonto.Domain.Entities;
 
 namespace SistemaPonto.Infra.Data {
     public class DataContext : DbContext {
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies();
+        }
+
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }

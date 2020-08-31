@@ -18,5 +18,6 @@
             <button mat-raised-button (click)="cancelar()">Cancelar</button>
             <button mat-raised-button (click)="tirarFoto()" *ngIf="!capturedImage">Capturar</button>
             <button mat-raised-button (click)="apagarImagemCapturada()" *ngIf="capturedImage">Capturar Novamente</button>
+            <button mat-raised-button (click)="salvar()" *ngIf="capturedImage">Salvar</button>
         </p>       
 </mat-dialog-content>

@@ -16,15 +16,15 @@ namespace SistemaPonto.Domain.Entities {
         public byte[] Imagem { get; set; }
 
         [Required(ErrorMessage="O campo setor é obrigatório")]
-        [Column("setorid")]
-        public Setor Setor { get; set; }   
+        [ForeignKey("setorid")]
+        public virtual Setor Setor { get; set; }   
 
         [Required(ErrorMessage="O campo cargo é obrigatório")]
         [MaxLength(100, ErrorMessage="O campo cargo deve ter no máximo 100 caracteres")]
         [Column("cargo")]
         public string Cargo { get; set; } 
 
-        public List<Horario> Horarios { get; set; } 
+        public virtual List<Horario> Horarios { get; set; } 
 
         [MaxLength(100, ErrorMessage="O campo logradouro deve ter no máximo 100 caracteres")]  
         [Column("logradouro")]        

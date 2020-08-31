@@ -58,4 +58,8 @@ export class CameraComponent implements OnInit {
   apagarImagemCapturada(){
     this.capturedImage = null;
   }
+
+  salvar(){
+    this.dialogRef.close(this.capturedImage);
+  }
 }

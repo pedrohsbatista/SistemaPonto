@@ -101,9 +101,14 @@ export class ColaboradorFormComponent implements OnInit {
     }   
   }
 
+  compareFunction(o1: any, o2: any) {
+    return (o2 && o1.id == o2.id);
+  }
+
   save() {
     if(this.colaboradorForm.valid){
       var dados = this.colaboradorForm.value;
+      dados.horarios = this.horarios.data;
       if (dados.id){
         this.colaboradorService.put(this.colaboradorForm.value).subscribe((success) => {
           this.router.navigate(['/colaborador']);
@@ -144,7 +149,7 @@ export class ColaboradorFormComponent implements OnInit {
 
      dialogRef.afterClosed().subscribe(result => {
        if (result) {
-        
+         this.imagem = result;
        }
      });
   }  
