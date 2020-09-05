@@ -161,7 +161,7 @@
         <mat-table [dataSource]="horarios" class="table">         
             <ng-container matColumnDef="diaSemana">
               <mat-header-cell *matHeaderCellDef>Dia da Semana</mat-header-cell>
-              <mat-cell *matCellDef="let row">{{row.diaSemana}}</mat-cell>
+              <mat-cell *matCellDef="let row">{{enumToLabel(row.diaSemana)}}</mat-cell>
             </ng-container>
             <ng-container matColumnDef="inicio">
                 <mat-header-cell *matHeaderCellDef>Início</mat-header-cell>

@@ -12,6 +12,7 @@ import { HorarioFormComponent } from '../horario-form/horario-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import { WebcamImage } from 'ngx-webcam';
 import { CameraComponent } from 'src/app/utilities/camera/camera.component';
+import { DiaSemana } from 'src/app/models/enums/dia-semana.enum';
 
 @Component({
   selector: 'app-colaborador-form',
@@ -142,6 +143,18 @@ export class ColaboradorFormComponent implements OnInit {
     var index = this.horarios.data.findIndex(horario => horario.id == id);
     this.horarios.data.splice(index, 1);
     this.horarios.data = horarios;
+  }
+
+  enumToLabel(diaSemana: DiaSemana){    
+    switch(diaSemana){
+      case DiaSemana.Domingo: return "Domingo";
+      case DiaSemana.Segunda: return "Segunda-Feira";
+      case DiaSemana.Terca: return "Terça-Feira";
+      case DiaSemana.Quarta: return "Quarta-Feira";
+      case DiaSemana.Quinta: return "Quinta-Feira";
+      case DiaSemana.Sexta: return "Sexta-Feira";
+      case DiaSemana.Sabado: return "Sábado";
+    }
   }
 
   openCam(){

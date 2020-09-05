@@ -18,6 +18,7 @@ using SistemaPonto.Domain.Services;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace SistemaPonto.Api
 {
@@ -33,7 +34,9 @@ namespace SistemaPonto.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           services.AddControllers().AddNewtonsoftJson();   
+           services.AddControllers().AddNewtonsoftJson(options => {
+               options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+           });   
 
            services.AddDbContext<DataContext>(options => options.UseNpgsql(Configuration.GetConnectionString("ConnectionString")));          
            
@@ -50,6 +53,7 @@ namespace SistemaPonto.Api
            services.AddTransient<IMovimentacaoRepository, MovimentacaoRepository>();
            services.AddTransient<ISetorRepository, SetorRepository>();
            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+           services.AddTransient<HorarioRepository>();
   
            services.AddAuthentication(options => {
               options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
