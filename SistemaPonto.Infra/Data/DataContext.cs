@@ -18,5 +18,10 @@ namespace SistemaPonto.Infra.Data {
         public DbSet<Movimentacao> Movimentacoes { get; set; }
         public DbSet<Setor> Setores { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Usuario>().HasDiscriminator<string>("tipo");
+        }
     }  
 }

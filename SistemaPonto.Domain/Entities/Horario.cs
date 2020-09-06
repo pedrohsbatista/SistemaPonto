@@ -6,7 +6,7 @@ using SistemaPonto.Domain.Enums;
 namespace SistemaPonto.Domain.Entities {
     [Table("horarios")]
     public class Horario : EntidadeBase {
-        [ForeignKey("colaboradorId")]
+        [ForeignKey("colaboradorid")]
         public virtual Colaborador Colaborador { get; set; }
         [Required(ErrorMessage="O campo dia da semana é obrigatório")]
         [Column("diasemana")]

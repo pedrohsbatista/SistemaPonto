@@ -1,3 +1,7 @@
+.toolbar{
+  background-color: #ffffff;
+}
+
 .menu {
     position: inherit;
     top: 0;
@@ -13,6 +17,7 @@
 
 .conteudo {
     padding: 10px;
+    background-color: #ffffff;
 }
 
 .mat-button.remove-hover ::ng-deep .mat-button-focus-overlay,
