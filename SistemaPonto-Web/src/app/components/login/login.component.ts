@@ -30,9 +30,9 @@ export class LoginComponent implements OnInit {
   
   logar(){
     this.loginService.login(this.loginForm.value).subscribe((success) => {
-      App.usuario = success.usuario;
+      window.localStorage.setItem('usuario', success.usuario);
       window.localStorage.setItem('token', success.token);
-      this.router.navigate(['/setor']);
+      this.router.navigate(['/movimentacao']);
     }, (response) => {
       this.notification.openSnackBar(response.error);
     });

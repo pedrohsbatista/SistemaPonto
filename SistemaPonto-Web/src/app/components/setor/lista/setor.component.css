@@ -4,4 +4,21 @@ table {
 
 .buttons-action{
   float: right;
+  margin-right: 15px;
+}
+
+.icon-add{
+  font-size: 35px;
+}
+
+.icon-primary{
+  color: #4682b4;  
+}
+
+.icon-success{
+  color: #2e8b57;
+}
+
+.icon-danger{
+  color: #a52a2a;
 }

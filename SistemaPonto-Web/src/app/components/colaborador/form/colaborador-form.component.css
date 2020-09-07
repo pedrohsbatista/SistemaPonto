@@ -37,3 +37,8 @@ img {
   height: 130px;
   width: 130px;
 }
+
+.btn-success{
+  background-color: #2e8b57;
+  color: #ffffff;
+}

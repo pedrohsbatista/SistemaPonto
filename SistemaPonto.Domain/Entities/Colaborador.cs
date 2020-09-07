@@ -65,5 +65,9 @@ namespace SistemaPonto.Domain.Entities {
         [MaxLength(11, ErrorMessage="O campo celular deve ter no máximo 11 caracteres")]
         [Column("celular")]
         public string Celular { get; set; }
+
+        [Required(ErrorMessage="O campo personid é obrigatório")]
+        [Column("personid")]
+        public Guid PersonId { get; set; }
     }
 }

@@ -19,6 +19,10 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using SistemaPonto.Domain;
+using SistemaPonto.Domain.Interface;
+using SistemaPonto.Cognitive.Services;
+using Microsoft.Extensions.Options;
 
 namespace SistemaPonto.Api
 {
@@ -34,6 +38,8 @@ namespace SistemaPonto.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+           services.Configure<AppSettings>(Configuration).AddSingleton(sp => sp.GetRequiredService<IOptions<AppSettings>>().Value);
+
            services.AddControllers().AddNewtonsoftJson(options => {
                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
            });   
@@ -54,6 +60,7 @@ namespace SistemaPonto.Api
            services.AddTransient<ISetorRepository, SetorRepository>();
            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
            services.AddTransient<HorarioRepository>();
+           services.AddTransient<ICognitiveService, CognitiveService>();
   
            services.AddAuthentication(options => {
               options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -85,7 +92,7 @@ namespace SistemaPonto.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataContext dataContext)
         {
             if (env.IsDevelopment())
             {
@@ -106,6 +113,8 @@ namespace SistemaPonto.Api
             {
                 endpoints.MapControllers();
             });
+
+            DbInitializar.Initialize(dataContext);
         }
     }
 }

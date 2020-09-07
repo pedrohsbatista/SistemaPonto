@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SistemaPonto.Domain\SistemaPonto.Domain.csproj" />
     <ProjectReference Include="..\SistemaPonto.Infra\SistemaPonto.Infra.csproj" />
+    <ProjectReference Include="..\SistemaPonto.Cognitive\SistemaPonto.Cognitive.csproj" />
   </ItemGroup>
 
   <ItemGroup>

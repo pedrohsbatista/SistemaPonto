@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   constructor(private router : Router) { }
 
   ngOnInit(): void {
-    this.usuario = App.usuario;
+    this.usuario = window.localStorage.getItem('usuario');
   }
 
   logout(){

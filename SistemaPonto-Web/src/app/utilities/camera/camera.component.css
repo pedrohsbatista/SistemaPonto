@@ -14,3 +14,17 @@
     margin-right: auto;  
 }
 
+.btn-success{
+    background-color: #2e8b57;
+    color: #ffffff;
+}
+
+.btn-primary{
+    background-color: #4682b4;
+    color: #ffffff;
+}
+
+.btn-danger{
+    background-color: #a52a2a;
+    color: #ffffff;
+}

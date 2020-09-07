@@ -1,9 +1,36 @@
+using System.Threading.Tasks;
 using SistemaPonto.Domain.Entities;
 using SistemaPonto.Domain.IRepository;
+using SistemaPonto.Domain.Interface;
+using System;
 
 namespace SistemaPonto.Domain.Services {
     public class ColaboradorService : GenericService<Colaborador> {
-        public ColaboradorService(IColaboradorRepository repository) : base(repository) {           
+        private IColaboradorRepository _colaboradorRepository;
+        private readonly ICognitiveService _cognitiveService;
+        public ColaboradorService(IColaboradorRepository repository, ICognitiveService cognitiveService) : base(repository) {  
+            _colaboradorRepository = repository;
+            _cognitiveService = cognitiveService;
+        }
+
+        public override async Task<Colaborador> Create(Colaborador entidade)
+        {
+          var personId = await _cognitiveService.CreatePerson(entidade.Nome);
+          entidade.PersonId = personId;
+          return await _colaboradorRepository.Create(entidade);
+        }
+
+        public override async Task<Colaborador> Update(Colaborador entidade)
+        {
+            await _cognitiveService.UpdatePerson(entidade.PersonId, entidade.Nome);
+            return await _colaboradorRepository.Update(entidade);
+        }
+
+        public override async Task<Colaborador> Delete(Guid id)
+        {
+            var colaborador = await _colaboradorRepository.ReadByIdAsNoTracking(id);
+            await _cognitiveService.DeletePerson(colaborador.PersonId);
+            return await _colaboradorRepository.Delete(id);
         }
     }
 }

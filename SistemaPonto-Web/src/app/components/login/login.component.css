@@ -12,3 +12,8 @@
 .logo{
     margin: 10px 0 10px 15px;
 }
+
+.btn-primary{
+   background-color: #4682b4;
+   color: #ffffff;
+}

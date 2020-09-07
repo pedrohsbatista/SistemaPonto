@@ -15,9 +15,9 @@
             <img [src]="capturedImage" class="captured-image" />
         </p>
         <p class="buttons-actions">
-            <button mat-raised-button (click)="cancelar()">Cancelar</button>
-            <button mat-raised-button (click)="tirarFoto()" *ngIf="!capturedImage">Capturar</button>
-            <button mat-raised-button (click)="apagarImagemCapturada()" *ngIf="capturedImage">Capturar Novamente</button>
-            <button mat-raised-button (click)="salvar()" *ngIf="capturedImage">Salvar</button>
+            <button mat-raised-button (click)="cancelar()" class="btn-danger">Cancelar</button>
+            <button mat-raised-button (click)="tirarFoto()" *ngIf="!capturedImage" class="btn-primary">Capturar</button>
+            <button mat-raised-button (click)="apagarImagemCapturada()" *ngIf="capturedImage" class="btn-primary">Capturar Novamente</button>
+            <button mat-raised-button (click)="salvar()" *ngIf="capturedImage" class="btn-success">Salvar</button>
         </p>       
 </mat-dialog-content>

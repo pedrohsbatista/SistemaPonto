@@ -22,3 +22,8 @@
 .row > .mat-form-field:not(:first-child) { 
   margin-left: 30px;
 }
+
+.btn-success{
+  background-color: #2e8b57;
+  color: #ffffff;
+}

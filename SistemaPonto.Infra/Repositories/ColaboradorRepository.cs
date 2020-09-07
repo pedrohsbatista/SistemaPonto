@@ -40,6 +40,10 @@ namespace SistemaPonto.Infra.Repositories{
            _dataContext.Horarios.RemoveRange(entidade.Horarios);
            await _dataContext.SaveChangesAsync();    
            return entidade;    
-        }        
+        }       
+        public async Task<Colaborador> ReadByIdAsNoTracking(Guid id)
+        {
+            return await _dataContext.Colaboradores.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
+        }
     }
 }

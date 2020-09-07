@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaPonto.Domain", "Sist
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaPonto.Infra", "SistemaPonto.Infra\SistemaPonto.Infra.csproj", "{4E1A660C-90F0-41B0-B171-05C2DE43DA10}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaPonto.Cognitive", "SistemaPonto.Cognitive\SistemaPonto.Cognitive.csproj", "{B772BCC9-7252-4F12-B03A-5B6F2A4C84B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,5 +60,17 @@ Global
 		{4E1A660C-90F0-41B0-B171-05C2DE43DA10}.Release|x64.Build.0 = Release|Any CPU
 		{4E1A660C-90F0-41B0-B171-05C2DE43DA10}.Release|x86.ActiveCfg = Release|Any CPU
 		{4E1A660C-90F0-41B0-B171-05C2DE43DA10}.Release|x86.Build.0 = Release|Any CPU
+		{B772BCC9-7252-4F12-B03A-5B6F2A4C84B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B772BCC9-7252-4F12-B03A-5B6F2A4C84B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B772BCC9-7252-4F12-B03A-5B6F2A4C84B5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B772BCC9-7252-4F12-B03A-5B6F2A4C84B5}.Debug|x64.Build.0 = Debug|Any CPU
+		{B772BCC9-7252-4F12-B03A-5B6F2A4C84B5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B772BCC9-7252-4F12-B03A-5B6F2A4C84B5}.Debug|x86.Build.0 = Debug|Any CPU
+		{B772BCC9-7252-4F12-B03A-5B6F2A4C84B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B772BCC9-7252-4F12-B03A-5B6F2A4C84B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B772BCC9-7252-4F12-B03A-5B6F2A4C84B5}.Release|x64.ActiveCfg = Release|Any CPU
+		{B772BCC9-7252-4F12-B03A-5B6F2A4C84B5}.Release|x64.Build.0 = Release|Any CPU
+		{B772BCC9-7252-4F12-B03A-5B6F2A4C84B5}.Release|x86.ActiveCfg = Release|Any CPU
+		{B772BCC9-7252-4F12-B03A-5B6F2A4C84B5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
