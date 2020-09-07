@@ -14,10 +14,13 @@ import { HomeComponent } from './components/home/home.component';
 const routes: Routes = [
   { path: '', component: LoginComponent, children: [ { path: 'login', component: LoginComponent } ] },
   { path: '', component: HomeComponent, children: [ { path: 'setor', component: SetorComponent  } ] },
+  { path: '', component: HomeComponent, children: [ { path: 'setorForm', component: SetorFormComponent } ] },
   { path: '', component: HomeComponent, children: [ { path: 'setorForm/:id', component: SetorFormComponent } ] },
   { path: '', component: HomeComponent, children: [ { path: 'colaborador', component: ColaboradorComponent } ] },
+  { path: '', component: HomeComponent, children: [ { path: 'colaboradorForm', component: ColaboradorFormComponent } ] },
   { path: '', component: HomeComponent, children: [ { path: 'colaboradorForm/:id', component: ColaboradorFormComponent } ] },
   { path: '', component: HomeComponent, children: [ { path: 'administrativo', component: AdministrativoComponent  } ] },
+  { path: '', component: HomeComponent, children: [ { path: 'administrativoForm', component: AdministrativoFormComponent } ] },
   { path: '', component: HomeComponent, children: [ { path: 'administrativoForm/:id', component: AdministrativoFormComponent } ] },
   { path: '', component: HomeComponent, children: [ { path: 'movimentacao', component: MovimentacaoComponent  } ] },
   { path: '', component: HomeComponent, children: [ { path: 'movimentacaoForm/:id', component: MovimentacaoFormComponent } ] }

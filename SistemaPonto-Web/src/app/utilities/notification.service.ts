@@ -9,11 +9,16 @@ export class NotificationService {
   constructor(private snackBar: MatSnackBar) { 
   }
 
-  openSnackBar(message, action = '', horizontalPosition : MatSnackBarHorizontalPosition = 'center' , verticalPosition : MatSnackBarVerticalPosition = 'bottom', duration = 5000) {
+  openSnackBarDanger(message, action = '', horizontalPosition : MatSnackBarHorizontalPosition = 'center' , verticalPosition : MatSnackBarVerticalPosition = 'bottom', duration = 5000) {
+    this.openSnackBar(message, 'notification-danger', action, horizontalPosition, verticalPosition, duration);
+  }
+
+  private openSnackBar(message, color, action = '', horizontalPosition : MatSnackBarHorizontalPosition = 'center' , verticalPosition : MatSnackBarVerticalPosition = 'bottom', duration = 5000) {
     this.snackBar.open(message, action, {
       duration: duration,
       horizontalPosition: horizontalPosition,
-      verticalPosition: verticalPosition 
+      verticalPosition: verticalPosition,
+      panelClass: [color]
     });
   }
 }

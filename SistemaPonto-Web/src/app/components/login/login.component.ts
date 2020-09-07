@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from '../../services/login.service';
-import { App } from '../../utilities/app'; 
 import { NotificationService } from '../../utilities/notification.service'; 
 
 @Component({
@@ -23,18 +22,20 @@ export class LoginComponent implements OnInit {
 
   createLoginForm(){
     this.loginForm = this.formBuilder.group({
-        login: undefined,
-        senha: undefined
+        login: [undefined, [Validators.required]],
+        senha: [undefined, [Validators.required]]
     });
-  }
+  } 
   
   logar(){
-    this.loginService.login(this.loginForm.value).subscribe((success) => {
-      window.localStorage.setItem('usuario', success.usuario);
-      window.localStorage.setItem('token', success.token);
-      this.router.navigate(['/movimentacao']);
-    }, (response) => {
-      this.notification.openSnackBar(response.error);
-    });
+    if(this.loginForm.valid){
+      this.loginService.login(this.loginForm.value).subscribe((success) => {
+        window.localStorage.setItem('usuario', success.usuario);
+        window.localStorage.setItem('token', success.token);
+        this.router.navigate(['/movimentacao']);
+      }, (response) => {
+        this.notification.openSnackBarDanger(response.error);
+      });
+    }
   }
 }

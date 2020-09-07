@@ -2,3 +2,11 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.notification-danger {
+    background: #a52a2a !important;
+}
+
+.mat-simple-snackbar > span{
+    color: #ffffff;
+}

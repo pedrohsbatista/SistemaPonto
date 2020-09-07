@@ -6,14 +6,20 @@
                     <mat-form-field style="width:  100%;">
                         <mat-label>Login</mat-label>
                         <input matInput formControlName="login">
+                        <mat-error>
+                            <app-validator-form [field]="loginForm.controls.login"></app-validator-form>
+                        </mat-error>
                     </mat-form-field>
                 </p>
                 <p>
                 <mat-form-field style="width: 100%;">
                     <mat-label>Senha</mat-label>
                     <input type="password" matInput formControlName="senha">
+                    <mat-error>
+                        <app-validator-form [field]="loginForm.controls.senha"></app-validator-form>
+                    </mat-error>
                 </mat-form-field>
-            </p>
+            </p>    
             <p>
                 <button mat-raised-button style="width: 100%;" class="btn-primary">Entrar</button>
             </p>
