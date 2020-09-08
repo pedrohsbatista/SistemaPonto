@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using SistemaPonto.Domain.IRepository;
 using SistemaPonto.Infra.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace SistemaPonto.Infra.Repositories {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
@@ -38,12 +40,16 @@ namespace SistemaPonto.Infra.Repositories {
             return entidade;
         }
 
-        public virtual async Task<T> Delete(Guid id)
+        public virtual async Task<T> Delete(T entidade)
         {
-           var entidade = await ReadById(id);
            _dataContext.Set<T>().Remove(entidade);
            await _dataContext.SaveChangesAsync();    
            return entidade;    
+        }
+
+        public virtual Task<List<T>> Read(Expression<Func<T, bool>> predicate)
+        {
+            return _dataContext.Set<T>().Where(predicate).ToListAsync();
         }
     }
 }

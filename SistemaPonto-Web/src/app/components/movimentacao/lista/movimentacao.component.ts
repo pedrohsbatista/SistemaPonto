@@ -2,11 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatDialog } from '@angular/material/dialog';
-import { Guid } from 'guid-typescript';
-import { ConfirmExclusionDialogComponent } from 'src/app/utilities/confirm-exclusion-dialog/confirm-exclusion-dialog.component';
 import { Movimentacao } from '../../../models/entidades/movimentacao';
 import { MovimentacaoService } from '../../../services/movimentacao.service';
+import { NotificationService } from 'src/app/utilities/notification.service';
 
 @Component({
   selector: 'app-movimentacao',
@@ -20,7 +18,7 @@ export class MovimentacaoComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private movimentacaoService: MovimentacaoService, private dialog: MatDialog) {          
+  constructor(private movimentacaoService: MovimentacaoService, private notification : NotificationService) {          
       this.dataSource = new MatTableDataSource([]);
   }
 
@@ -40,24 +38,10 @@ export class MovimentacaoComponent implements OnInit {
   }
 
   getAll(){
-     this.movimentacaoService.get().subscribe((movimentacoes: Movimentacao[]) => {
+    this.movimentacaoService.get().subscribe((movimentacoes: Movimentacao[]) => {
       this.dataSource.data = movimentacoes;
-     });
-  }
-
-  confirmExclusao(id: Guid){
-    const dialogRef = this.dialog.open(ConfirmExclusionDialogComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        this.delete(id);
-      }
+    }, (response) => {
+      this.notification.openSnackBarDanger(response.error);
     });
-  }
-
-  delete(id: Guid){
-    this.movimentacaoService.delete(id).subscribe((success) => {
-      this.getAll();
-    })    
-  }
+  } 
 }

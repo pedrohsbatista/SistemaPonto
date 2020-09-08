@@ -13,6 +13,7 @@ namespace SistemaPonto.Domain.Services {
         }
         public virtual async Task<T> Create(T entidade)
         {
+          await Verify(entidade);
           return await _genericRepository.Create(entidade);
         }
 
@@ -28,12 +29,18 @@ namespace SistemaPonto.Domain.Services {
 
         public virtual async Task<T> Update(T entidade)
         {
+            await Verify(entidade);
             return await _genericRepository.Update(entidade);
         }
 
-        public virtual async Task<T> Delete(Guid id)
+        public virtual async Task<T> Delete(T entidade)
         {
-            return await _genericRepository.Delete(id);
+            return await _genericRepository.Delete(entidade);
+        }
+
+        public virtual async Task Verify(T entidade)
+        {
+            
         }
     }
 }

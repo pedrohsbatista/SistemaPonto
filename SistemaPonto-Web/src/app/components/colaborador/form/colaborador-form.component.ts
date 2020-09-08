@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { WebcamImage } from 'ngx-webcam';
 import { CameraComponent } from 'src/app/utilities/camera/camera.component';
 import { DiaSemana } from 'src/app/models/enums/dia-semana.enum';
+import { NotificationService } from 'src/app/utilities/notification.service';
 
 @Component({
   selector: 'app-colaborador-form',
@@ -28,11 +29,8 @@ export class ColaboradorFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private colaboradorService: ColaboradorService, 
     private router: Router, private activatedRoute: ActivatedRoute, private setorService: SetorService,
-    private dialog: MatDialog) { 
+    private dialog: MatDialog, private notification: NotificationService) { 
     this.createColaboradorForm();    
-    this.setorService.get().subscribe((setores: Setor[]) => {
-      this.setores = setores;
-    });
     this.horarios = new MatTableDataSource([]);
   }
 
@@ -59,6 +57,8 @@ export class ColaboradorFormComponent implements OnInit {
         this.colaboradorForm.controls['telefone'].setValue(colaborador.telefone); 
         this.colaboradorForm.controls['celular'].setValue(colaborador.celular); 
         this.apllyValidation();
+      }, (response) => {
+        this.notification.openSnackBarDanger(response.error);
       });    
     }   
   }
@@ -113,10 +113,14 @@ export class ColaboradorFormComponent implements OnInit {
       if (dados.id){
         this.colaboradorService.put(this.colaboradorForm.value).subscribe((success) => {
           this.router.navigate(['/colaborador']);
+        }, (response) => {
+          this.notification.openSnackBarDanger(response.error);
         });
       } else {
         this.colaboradorService.post(this.colaboradorForm.value).subscribe((success) => {
           this.router.navigate(['/colaborador']);
+        }, (response) => {
+          this.notification.openSnackBarDanger(response.error);
         });
       }
     }

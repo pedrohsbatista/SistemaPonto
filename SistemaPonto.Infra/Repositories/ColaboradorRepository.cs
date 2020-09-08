@@ -33,17 +33,12 @@ namespace SistemaPonto.Infra.Repositories{
             return entidade;
         }
 
-        public override async Task<Colaborador> Delete(Guid id)
+        public override async Task<Colaborador> Delete(Colaborador entidade)
         {
-           var entidade = await ReadById(id);
            _dataContext.Colaboradores.Remove(entidade);
            _dataContext.Horarios.RemoveRange(entidade.Horarios);
            await _dataContext.SaveChangesAsync();    
            return entidade;    
         }       
-        public async Task<Colaborador> ReadByIdAsNoTracking(Guid id)
-        {
-            return await _dataContext.Colaboradores.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
-        }
     }
 }

@@ -7,6 +7,7 @@ import { Setor } from '../../../models/entidades/setor';
 import { Guid } from 'guid-typescript';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmExclusionDialogComponent } from 'src/app/utilities/confirm-exclusion-dialog/confirm-exclusion-dialog.component';
+import { NotificationService } from 'src/app/utilities/notification.service';
 
 @Component({
   selector: 'app-setor',
@@ -20,7 +21,8 @@ export class SetorComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private setorService: SetorService, private dialog: MatDialog) {          
+  constructor(private setorService: SetorService, private dialog: MatDialog,
+    private notification: NotificationService) {          
       this.dataSource = new MatTableDataSource([]);
   }
 
@@ -40,9 +42,11 @@ export class SetorComponent implements OnInit {
   }
 
   getAll(){
-     this.setorService.get().subscribe((setores: Setor[]) => {
+    this.setorService.get().subscribe((setores: Setor[]) => {
       this.dataSource.data = setores;
-     });
+    }, (response) => {
+      this.notification.openSnackBarDanger(response.error);
+    });
   }
 
   confirmExclusao(id: Guid){
@@ -58,6 +62,8 @@ export class SetorComponent implements OnInit {
   delete(id: Guid){
     this.setorService.delete(id).subscribe((success) => {
       this.getAll();
-    })    
+    }, (response) => {
+      this.notification.openSnackBarDanger(response.error);
+    });   
   }
 }

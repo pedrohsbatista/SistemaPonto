@@ -26,11 +26,10 @@ namespace SistemaPonto.Domain.Services {
             return await _colaboradorRepository.Update(entidade);
         }
 
-        public override async Task<Colaborador> Delete(Guid id)
+        public override async Task<Colaborador> Delete(Colaborador entidade)
         {
-            var colaborador = await _colaboradorRepository.ReadByIdAsNoTracking(id);
-            await _cognitiveService.DeletePerson(colaborador.PersonId);
-            return await _colaboradorRepository.Delete(id);
+            await _cognitiveService.DeletePerson(entidade.PersonId);
+            return await _colaboradorRepository.Delete(entidade);
         }
     }
 }

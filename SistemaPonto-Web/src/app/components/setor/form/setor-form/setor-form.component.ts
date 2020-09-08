@@ -4,6 +4,7 @@ import { SetorService } from 'src/app/services/setor.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Setor } from 'src/app/models/entidades/setor';
+import { NotificationService } from 'src/app/utilities/notification.service';
 
 @Component({
   selector: 'app-setor-form',
@@ -14,7 +15,7 @@ export class SetorFormComponent implements OnInit {
 
   setorForm: FormGroup;
   constructor(private formBuilder: FormBuilder, private setorService: SetorService, 
-    private router: Router, private activatedRoute: ActivatedRoute) { 
+    private router: Router, private activatedRoute: ActivatedRoute, private notification: NotificationService) { 
     this.createSetorForm();    
   }
 
@@ -23,6 +24,8 @@ export class SetorFormComponent implements OnInit {
       this.setorService.getById(this.activatedRoute.snapshot.params.id).subscribe((setor: Setor) => {
         this.setorForm.controls['id'].setValue(setor.id);
         this.setorForm.controls['nome'].setValue(setor.nome);         
+      }, (response) => {
+        this.notification.openSnackBarDanger(response.error);
       });    
     }   
   }
@@ -40,13 +43,16 @@ export class SetorFormComponent implements OnInit {
       if (dados.id){
         this.setorService.put(this.setorForm.value).subscribe((success) => {
           this.router.navigate(['/setor']);
-        });;
+        }, (response) => {
+          this.notification.openSnackBarDanger(response.error);
+        });
       } else {
         this.setorService.post(this.setorForm.value).subscribe((success) => {
           this.router.navigate(['/setor']);
-        });;
+        }, (response) => {
+          this.notification.openSnackBarDanger(response.error);
+        });
       }
-    }
-    
+    }    
   }
 }

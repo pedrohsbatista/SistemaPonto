@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { Colaborador } from '../../../models/entidades/colaborador';
 import { ColaboradorService } from  '../../../services/colaborador.service';
+import { NotificationService } from 'src/app/utilities/notification.service';
 
 @Component({
   selector: 'app-colaborador',
@@ -20,7 +21,8 @@ export class ColaboradorComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private colaboradorService: ColaboradorService, private dialog: MatDialog) {          
+  constructor(private colaboradorService: ColaboradorService, private dialog: MatDialog, 
+    private notification: NotificationService) {          
     this.dataSource = new MatTableDataSource([]);
   }
 
@@ -40,9 +42,11 @@ export class ColaboradorComponent implements OnInit {
   }
 
   getAll(){
-     this.colaboradorService.get().subscribe((colaboradores: Colaborador[]) => {
+    this.colaboradorService.get().subscribe((colaboradores: Colaborador[]) => {
       this.dataSource.data = colaboradores;
-     });
+    },(response) => {
+      this.notification.openSnackBarDanger(response.error);
+    });
   }
 
   confirmExclusao(id: Guid){
@@ -58,6 +62,8 @@ export class ColaboradorComponent implements OnInit {
   delete(id: Guid){
     this.colaboradorService.delete(id).subscribe((success) => {
       this.getAll();
-    })    
+    }, (response) => {
+      this.notification.openSnackBarDanger(response.error);
+    });  
   }
 }

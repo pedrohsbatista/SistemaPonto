@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn } from
 import { Router, ActivatedRoute } from '@angular/router';
 import { AdministrativoService } from 'src/app/services/administrativo.service';
 import { Administrativo } from 'src/app/models/entidades/administrativo';
+import { NotificationService } from 'src/app/utilities/notification.service';
 
 @Component({
   selector: 'app-administrativo-form',
@@ -13,7 +14,7 @@ export class AdministrativoFormComponent implements OnInit {
 
   administrativoForm: FormGroup;
   constructor(private formBuilder: FormBuilder, private administrativoService: AdministrativoService, 
-    private router: Router, private activatedRoute: ActivatedRoute) { 
+    private router: Router, private activatedRoute: ActivatedRoute, private notification: NotificationService) { 
     this.createAdministrativoForm();    
   }
 
@@ -24,6 +25,8 @@ export class AdministrativoFormComponent implements OnInit {
         this.administrativoForm.controls['nome'].setValue(administrativo.nome);
         this.administrativoForm.controls['login'].setValue(administrativo.login);
         this.apllyValidation();       
+      }, (response) => {
+        this.notification.openSnackBarDanger(response.error);
       });    
     }   
   }
@@ -58,11 +61,15 @@ export class AdministrativoFormComponent implements OnInit {
       if (dados.id){
         this.administrativoService.put(this.administrativoForm.value).subscribe((success) => {
           this.router.navigate(['/administrativo']);
-        });;
+        }, (response) => {
+          this.notification.openSnackBarDanger(response.error);
+        });
       } else {
         this.administrativoService.post(this.administrativoForm.value).subscribe((success) => {
           this.router.navigate(['/administrativo']);
-        });;
+        }, (response) => {
+          this.notification.openSnackBarDanger(response.error);
+        });
       }
     }   
   }

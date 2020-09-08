@@ -22,6 +22,7 @@ namespace SistemaPonto.Infra.Data {
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Usuario>().HasDiscriminator<string>("tipo");
+            modelBuilder.Entity<Setor>().HasIndex(x => x.Nome).IsUnique();
         }
     }  
 }

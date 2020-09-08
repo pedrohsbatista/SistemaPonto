@@ -7,6 +7,7 @@ import { Guid } from 'guid-typescript';
 import { ConfirmExclusionDialogComponent } from 'src/app/utilities/confirm-exclusion-dialog/confirm-exclusion-dialog.component';
 import { Administrativo } from '../../../models/entidades/administrativo';
 import { AdministrativoService } from '../../../services/administrativo.service';
+import { NotificationService } from 'src/app/utilities/notification.service';
 
 @Component({
   selector: 'app-administrativo',
@@ -20,7 +21,8 @@ export class AdministrativoComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private administrativoService: AdministrativoService, private dialog: MatDialog) {          
+  constructor(private administrativoService: AdministrativoService, private dialog: MatDialog,
+      private notification: NotificationService) {          
       this.dataSource = new MatTableDataSource([]);
   }
 
@@ -40,9 +42,11 @@ export class AdministrativoComponent implements OnInit {
   }
 
   getAll(){
-     this.administrativoService.get().subscribe((administradores: Administrativo[]) => {
+    this.administrativoService.get().subscribe((administradores: Administrativo[]) => {
       this.dataSource.data = administradores;
-     });
+    },(response) => {
+      this.notification.openSnackBarDanger(response.error);
+    });
   }
 
   confirmExclusao(id: Guid){
@@ -58,6 +62,8 @@ export class AdministrativoComponent implements OnInit {
   delete(id: Guid){
     this.administrativoService.delete(id).subscribe((success) => {
       this.getAll();
-    })    
+    }, (response) => {
+      this.notification.openSnackBarDanger(response.error);
+    });
   }
 }

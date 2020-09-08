@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Movimentacao } from 'src/app/models/entidades/movimentacao';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { MovimentacaoService } from 'src/app/services/movimentacao.service';
+import { NotificationService } from 'src/app/utilities/notification.service';
 
 @Component({
   selector: 'app-movimentacao-form',
@@ -13,7 +14,7 @@ export class MovimentacaoFormComponent implements OnInit {
 
   movimentacaoForm: FormGroup;
   constructor(private formBuilder: FormBuilder, private movimentacaoService: MovimentacaoService, 
-    private router: Router, private activatedRoute: ActivatedRoute) { 
+    private activatedRoute: ActivatedRoute, private notification : NotificationService) { 
     this.createMovimentacaoForm();    
   }
 
@@ -23,6 +24,8 @@ export class MovimentacaoFormComponent implements OnInit {
         this.movimentacaoForm = this.formBuilder.group({  
           id: movimentacao.id,  
           dataMovimentacao: movimentacao.dataMovimentacao   
+        }, (response) => {
+          this.notification.openSnackBarDanger(response.error);
         });
       });    
     }   
@@ -32,19 +35,5 @@ export class MovimentacaoFormComponent implements OnInit {
       this.movimentacaoForm = this.formBuilder.group({    
         dataMovimentacao: undefined     
       });       
-  }
-
-  save() {
-    var dados = this.movimentacaoForm.value;
-    dados.dataMovimentacao = new Date(dados.dataMovimentacao).toISOString();
-    if (dados.id){
-      this.movimentacaoService.put(this.movimentacaoForm.value).subscribe((success) => {
-        this.router.navigate(['/movimentacao']);
-      });;
-    } else {
-      this.movimentacaoService.post(this.movimentacaoForm.value).subscribe((success) => {
-        this.router.navigate(['/movimentacao']);
-      });;
-    }
   }
 }
