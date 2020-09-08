@@ -38,9 +38,9 @@ namespace SistemaPonto.Domain.Services {
             return await _genericRepository.Delete(entidade);
         }
 
-        public virtual async Task Verify(T entidade)
+        public virtual Task Verify(T entidade)
         {
-            
+           return Task.CompletedTask;
         }
     }
 }
