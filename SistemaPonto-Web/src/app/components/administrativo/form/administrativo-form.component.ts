@@ -36,22 +36,22 @@ export class AdministrativoFormComponent implements OnInit {
         id: undefined,
         nome: [undefined, [Validators.required, Validators.maxLength(100)]],
         login: [undefined, [Validators.required, Validators.maxLength(100)]] ,
-        senha: [undefined, [Validators.required, Validators.maxLength(50), Validators.minLength(6)]],
-        confirmarSenha: [undefined, [confirmarSenhaValidator]]           
+        password: [undefined, [Validators.required, Validators.maxLength(50), Validators.minLength(6)]],
+        confirmPassword: [undefined, [confirmPasswordValidator]]           
       }); 
   }
 
   apllyValidation(){
-    if(this.administrativoForm.controls['id'].value && !this.administrativoForm.controls['senha'].value){
-      this.administrativoForm.controls['senha'].clearValidators();
-      this.administrativoForm.controls['senha'].updateValueAndValidity();
-      this.administrativoForm.controls['confirmarSenha'].clearValidators();
-      this.administrativoForm.controls['confirmarSenha'].updateValueAndValidity();
+    if(this.administrativoForm.controls['id'].value && !this.administrativoForm.controls['password'].value){
+      this.administrativoForm.controls['password'].clearValidators();
+      this.administrativoForm.controls['password'].updateValueAndValidity();
+      this.administrativoForm.controls['confirmPassword'].clearValidators();
+      this.administrativoForm.controls['confirmPassword'].updateValueAndValidity();
     }else{
-      this.administrativoForm.controls['senha'].setValidators([Validators.required, Validators.maxLength(100), Validators.minLength(6)]);
-      this.administrativoForm.controls['senha'].updateValueAndValidity();
-      this.administrativoForm.controls['confirmarSenha'].setValidators([confirmarSenhaValidator]);
-      this.administrativoForm.controls['confirmarSenha'].updateValueAndValidity();
+      this.administrativoForm.controls['password'].setValidators([Validators.required, Validators.maxLength(50), Validators.minLength(6)]);
+      this.administrativoForm.controls['password'].updateValueAndValidity();
+      this.administrativoForm.controls['confirmPassword'].setValidators([confirmPasswordValidator]);
+      this.administrativoForm.controls['confirmPassword'].updateValueAndValidity();
     }   
   }
 
@@ -75,9 +75,9 @@ export class AdministrativoFormComponent implements OnInit {
   }
 }
 
-function confirmarSenhaValidator(control: AbstractControl): { [key: string]: string } | null {
+function confirmPasswordValidator(control: AbstractControl): { [key: string]: string } | null {
   var administradorForm = control.parent;
-  if (administradorForm && control.value !== control.parent.controls['senha'].value) {
+  if (administradorForm && control.value !== control.parent.controls['password'].value) {
     return { "customValidator": "As senhas informadas são diferentes"} 
   }
   return null;

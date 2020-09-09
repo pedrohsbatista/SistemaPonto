@@ -19,5 +19,23 @@ namespace SistemaPonto.Domain.Entities
         [Column("senha")]
         [JsonIgnore]
         public string Senha { get; set; }
+        private string _password;
+        [NotMapped]
+        public string Password
+        {
+            get
+            {
+                return _password;
+            }
+            set
+            {
+                _password = value;
+
+                if(!string.IsNullOrEmpty(_password))
+                {
+                   Senha = _password;
+                }                
+            }
+        }
     }
 }

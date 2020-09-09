@@ -1,6 +1,7 @@
 import { Usuario } from './usuario';
 import { Setor } from './setor';
 import { Horario } from './horario';
+import { Guid } from 'guid-typescript';
 
 export interface Colaborador extends Usuario {
    dataNascimento : Date,
@@ -18,5 +19,6 @@ export interface Colaborador extends Usuario {
    complemento: string,
    email: string,
    telefone: string,
-   celular: string
+   celular: string,
+   personId: Guid
 }

@@ -23,6 +23,7 @@ namespace SistemaPonto.Infra.Data {
         {
             modelBuilder.Entity<Usuario>().HasDiscriminator<string>("tipo");
             modelBuilder.Entity<Setor>().HasIndex(x => x.Nome).IsUnique();
+            modelBuilder.Entity<Usuario>().HasIndex(x => x.Login).IsUnique();
         }
     }  
 }

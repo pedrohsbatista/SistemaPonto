@@ -1,3 +1,4 @@
 <span *ngIf="this.field.errors?.required">Este campo é obrigatório</span>    
 <span *ngIf="this.field.errors?.maxlength">Este campo deve ter no máximo {{this.field.errors.maxlength.requiredLength}} caracteres</span>      
+<span *ngIf="this.field.errors?.minlength">Este campo deve ter no mínimo {{this.field.errors.minlength.requiredLength}} caracteres</span>      
 <span *ngIf="this.field.errors?.customValidator">{{this.field.errors?.customValidator}}</span>

@@ -49,16 +49,16 @@
                     </mat-form-field>
                     <mat-form-field style="width: 15%;">
                         <mat-label>Senha</mat-label>
-                        <input type="password" matInput formControlName="senha" (change)="apllyValidation()">
+                        <input type="password" matInput formControlName="password" (change)="apllyValidation()">
                         <mat-error>
-                            <app-validator-form [field]="colaboradorForm.controls.senha"></app-validator-form>
+                            <app-validator-form [field]="colaboradorForm.controls.password"></app-validator-form>
                         </mat-error>
                     </mat-form-field>
                     <mat-form-field style="width: 15%;">
                         <mat-label>Confirmar Senha</mat-label>
-                        <input type="password" matInput formControlName="confirmarSenha">
+                        <input type="password" matInput formControlName="confirmPassword">
                         <mat-error>
-                            <app-validator-form  [field]="colaboradorForm.controls.confirmarSenha"></app-validator-form>
+                            <app-validator-form  [field]="colaboradorForm.controls.confirmPassword"></app-validator-form>
                         </mat-error>            
                     </mat-form-field>
                 </p>

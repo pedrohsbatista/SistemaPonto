@@ -31,6 +31,11 @@ export class ColaboradorFormComponent implements OnInit {
     private router: Router, private activatedRoute: ActivatedRoute, private setorService: SetorService,
     private dialog: MatDialog, private notification: NotificationService) { 
     this.createColaboradorForm();    
+    this.setorService.get().subscribe((setores: Setor[]) => {	
+      this.setores = setores;	
+    }, (response) => {
+      this.notification.openSnackBarDanger(response.error);
+    });
     this.horarios = new MatTableDataSource([]);
   }
 
@@ -55,7 +60,8 @@ export class ColaboradorFormComponent implements OnInit {
         this.colaboradorForm.controls['cep'].setValue(colaborador.cep);
         this.colaboradorForm.controls['email'].setValue(colaborador.email); 
         this.colaboradorForm.controls['telefone'].setValue(colaborador.telefone); 
-        this.colaboradorForm.controls['celular'].setValue(colaborador.celular); 
+        this.colaboradorForm.controls['celular'].setValue(colaborador.celular);
+        this.colaboradorForm.controls['personId'].setValue(colaborador.personId);
         this.apllyValidation();
       }, (response) => {
         this.notification.openSnackBarDanger(response.error);
@@ -68,8 +74,8 @@ export class ColaboradorFormComponent implements OnInit {
         id: undefined,   
         nome: [undefined, [Validators.required, Validators.maxLength(100)]],
         login: [undefined, [Validators.required, Validators.maxLength(100)]],
-        senha: [undefined, [Validators.required, Validators.maxLength(50), Validators.minLength(6)]],
-        confirmarSenha: [undefined, [confirmarSenhaValidator]],
+        password: [undefined, [Validators.required, Validators.maxLength(50), Validators.minLength(6)]],
+        confirmPassword: [undefined, [confirmPasswordValidator]],
         dataNascimento: undefined,
         cpf: [undefined, [Validators.maxLength(11)]],
         imagem: undefined,
@@ -84,21 +90,22 @@ export class ColaboradorFormComponent implements OnInit {
         complemento: [undefined, [Validators.maxLength(100)]],
         email: [undefined, [Validators.maxLength(100)]],
         telefone: [undefined, [Validators.maxLength(10)]],
-        celular: [undefined, [Validators.maxLength(11)]]
+        celular: [undefined, [Validators.maxLength(11)]],
+        personId: Guid.EMPTY
       });     
   }
 
   apllyValidation(){
-    if(this.colaboradorForm.controls['id'].value && !this.colaboradorForm.controls['senha'].value){
-      this.colaboradorForm.controls['senha'].clearValidators();
-      this.colaboradorForm.controls['senha'].updateValueAndValidity();
-      this.colaboradorForm.controls['confirmarSenha'].clearValidators();
-      this.colaboradorForm.controls['confirmarSenha'].updateValueAndValidity();
+    if(this.colaboradorForm.controls['id'].value && !this.colaboradorForm.controls['password'].value){
+      this.colaboradorForm.controls['password'].clearValidators();
+      this.colaboradorForm.controls['password'].updateValueAndValidity();
+      this.colaboradorForm.controls['confirmPassword'].clearValidators();
+      this.colaboradorForm.controls['confirmPassword'].updateValueAndValidity();
     }else{
-      this.colaboradorForm.controls['senha'].setValidators([Validators.required, Validators.maxLength(100), Validators.minLength(6)]);
-      this.colaboradorForm.controls['senha'].updateValueAndValidity();
-      this.colaboradorForm.controls['confirmarSenha'].setValidators([confirmarSenhaValidator]);
-      this.colaboradorForm.controls['confirmarSenha'].updateValueAndValidity();
+      this.colaboradorForm.controls['password'].setValidators([Validators.required, Validators.maxLength(100), Validators.minLength(6)]);
+      this.colaboradorForm.controls['password'].updateValueAndValidity();
+      this.colaboradorForm.controls['confirmPassword'].setValidators([confirmPasswordValidator]);
+      this.colaboradorForm.controls['confirmPassword'].updateValueAndValidity();
     }   
   }
 
@@ -172,9 +179,9 @@ export class ColaboradorFormComponent implements OnInit {
   }  
 }
 
-function confirmarSenhaValidator(control: AbstractControl): { [key: string]: string } | null {
+function confirmPasswordValidator(control: AbstractControl): { [key: string]: string } | null {
   var administradorForm = control.parent;
-  if (administradorForm && control.value !== control.parent.controls['senha'].value) {
+  if (administradorForm && control.value !== control.parent.controls['password'].value) {
     return { "customValidator": "As senhas informadas são diferentes"} 
   }
   return null;
