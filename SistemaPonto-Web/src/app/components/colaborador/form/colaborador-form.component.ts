@@ -10,10 +10,11 @@ import { Guid } from 'guid-typescript';
 import { MatTableDataSource } from '@angular/material/table';
 import { HorarioFormComponent } from '../horario-form/horario-form.component';
 import { MatDialog } from '@angular/material/dialog';
-import { WebcamImage } from 'ngx-webcam';
 import { CameraComponent } from 'src/app/utilities/camera/camera.component';
 import { DiaSemana } from 'src/app/models/enums/dia-semana.enum';
 import { NotificationService } from 'src/app/utilities/notification.service';
+import { CepService } from '../../../utilities/cep.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-colaborador-form',
@@ -29,7 +30,8 @@ export class ColaboradorFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private colaboradorService: ColaboradorService, 
     private router: Router, private activatedRoute: ActivatedRoute, private setorService: SetorService,
-    private dialog: MatDialog, private notification: NotificationService) { 
+    private dialog: MatDialog, private notification: NotificationService,
+    private cepService : CepService) { 
     this.createColaboradorForm();    
     this.setorService.get().subscribe((setores: Setor[]) => {	
       this.setores = setores;	
@@ -45,7 +47,7 @@ export class ColaboradorFormComponent implements OnInit {
         this.colaboradorForm.controls['id'].setValue(colaborador.id);  
         this.colaboradorForm.controls['nome'].setValue(colaborador.nome); 
         this.colaboradorForm.controls['login'].setValue(colaborador.login); 
-        this.colaboradorForm.controls['dataNascimento'].setValue(colaborador.dataNascimento); 
+        this.colaboradorForm.controls['dataNascimento'].setValue(colaborador.dataNascimento ? formatDate(colaborador.dataNascimento, 'yyyy-MM-dd', 'en') : null); 
         this.colaboradorForm.controls['cpf'].setValue(colaborador.cpf); 
         this.colaboradorForm.controls['imagem'].setValue(colaborador.imagem); 
         this.colaboradorForm.controls['setor'].setValue(colaborador.setor); 
@@ -102,7 +104,7 @@ export class ColaboradorFormComponent implements OnInit {
       this.colaboradorForm.controls['confirmPassword'].clearValidators();
       this.colaboradorForm.controls['confirmPassword'].updateValueAndValidity();
     }else{
-      this.colaboradorForm.controls['password'].setValidators([Validators.required, Validators.maxLength(100), Validators.minLength(6)]);
+      this.colaboradorForm.controls['password'].setValidators([Validators.required, Validators.maxLength(50), Validators.minLength(6)]);
       this.colaboradorForm.controls['password'].updateValueAndValidity();
       this.colaboradorForm.controls['confirmPassword'].setValidators([confirmPasswordValidator]);
       this.colaboradorForm.controls['confirmPassword'].updateValueAndValidity();
@@ -111,6 +113,16 @@ export class ColaboradorFormComponent implements OnInit {
 
   compareFunction(o1: any, o2: any) {
     return (o2 && o1.id == o2.id);
+  }
+
+  getEndereco(){
+    this.cepService.getEndereco(this.colaboradorForm.controls['cep'].value).subscribe((endereco: Object) => {
+       this.colaboradorForm.controls['logradouro'].setValue(endereco["logradouro"]);
+       this.colaboradorForm.controls['bairro'].setValue(endereco["bairro"]);
+       this.colaboradorForm.controls['municipio'].setValue(endereco["localidade"]);
+       this.colaboradorForm.controls['logradouro'].setValue(endereco["logradouro"]);
+       this.colaboradorForm.controls['uf'].setValue(endereco["uf"]);
+    });
   }
 
   save() {

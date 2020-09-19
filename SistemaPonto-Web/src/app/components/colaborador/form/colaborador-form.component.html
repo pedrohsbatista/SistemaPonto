@@ -33,7 +33,7 @@
                     </mat-form-field>
                     <mat-form-field style="width: 15%;">
                         <mat-label>CPF</mat-label>
-                        <input matInput formControlName="cpf">
+                        <input matInput formControlName="cpf" mask="000.000.000-00">
                         <mat-error>
                             <app-validator-form [field]="colaboradorForm.controls.cpf"></app-validator-form>
                         </mat-error>
@@ -67,7 +67,7 @@
         <p class="row">
             <mat-form-field style="width: 10%;">
                 <mat-label>CEP</mat-label>
-                <input matInput formControlName="cep">
+                <input matInput formControlName="cep" (change)="getEndereco()" mask="00000-000">
                 <mat-error>
                     <app-validator-form [field]="colaboradorForm.controls.cep"></app-validator-form>
                 </mat-error>
@@ -125,14 +125,14 @@
             </mat-form-field>  
             <mat-form-field style="width: 10%;">
                 <mat-label>Telefone</mat-label>
-                <input type="tel" matInput formControlName="telefone">
+                <input type="tel" matInput formControlName="telefone" mask="(00) 0000-0000">
                 <mat-error>
                     <app-validator-form [field]="colaboradorForm.controls.telefone"></app-validator-form>
                 </mat-error>
             </mat-form-field>
             <mat-form-field style="width: 10%;">
                 <mat-label>Celular</mat-label>
-                <input type="tel" matInput formControlName="celular">
+                <input type="tel" matInput formControlName="celular" mask="(00) 00000-0000">
                 <mat-error>
                     <app-validator-form [field]="colaboradorForm.controls.celular"></app-validator-form>
                 </mat-error>

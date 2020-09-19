@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgxMaskModule } from 'ngx-mask'
 
 import { AppComponent } from './app.component';
 import { SetorComponent } from './components/setor/lista/setor.component';
@@ -78,7 +79,8 @@ import { CameraComponent } from './utilities/camera/camera.component';
     MatSnackBarModule,
     MatSelectModule,
     MatCheckboxModule,
-    WebcamModule
+    WebcamModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: CustomPaginator() },

@@ -17,11 +17,10 @@ namespace SistemaPonto.Domain.Services {
       await Verify(entidade);
       if (string.IsNullOrEmpty (entidade.Senha)) {
         var administrativo = await _repository.ReadByIdAsNoTracking ((Guid) entidade.Id);
-        entidade.Senha = administrativo.Senha;
-        return await _repository.Update (entidade);
-      } else {
-        return await _repository.Update (entidade);
-      }
+        entidade.Senha = administrativo.Senha;       
+      } 
+
+      return await _repository.Update (entidade);
     }
 
     public override async Task Verify (Administrativo entidade) {

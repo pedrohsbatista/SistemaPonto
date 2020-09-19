@@ -16,8 +16,7 @@ namespace SistemaPonto.Infra.Repositories {
         }
       
         public virtual async Task<T> Create(T entidade)
-        {
-            _dataContext.Entry(entidade).State = EntityState.Added;
+        {            
             _dataContext.Set<T>().Add(entidade);
             await _dataContext.SaveChangesAsync();    
             return entidade;
@@ -35,7 +34,7 @@ namespace SistemaPonto.Infra.Repositories {
 
         public virtual async Task<T> Update(T entidade)
         {
-            _dataContext.Entry(entidade).State = EntityState.Modified;
+            _dataContext.Set<T>().Update(entidade);
             await _dataContext.SaveChangesAsync();    
             return entidade;
         }

@@ -26,9 +26,9 @@ namespace SistemaPonto.Infra.Repositories{
         public override async Task<Colaborador> Update(Colaborador entidade)
         {
             var result = await _horarioRepository.ReadByColaboradorIdAsNoTracking((Guid)entidade.Id);
-            _dataContext.Entry(entidade).State = EntityState.Modified;
             _dataContext.Horarios.RemoveRange(result);
             _dataContext.Horarios.AddRange(entidade.Horarios);
+            _dataContext.Colaboradores.Update(entidade);
             await _dataContext.SaveChangesAsync();    
             return entidade;
         }
@@ -40,5 +40,10 @@ namespace SistemaPonto.Infra.Repositories{
            await _dataContext.SaveChangesAsync();    
            return entidade;    
         }       
+
+        public async Task<Colaborador> ReadByIdAsNoTracking(Guid id)
+        {
+            return await _dataContext.Colaboradores.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
+        }
     }
 }

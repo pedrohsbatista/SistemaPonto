@@ -28,7 +28,14 @@ namespace SistemaPonto.Domain.Services {
         public override async Task<Colaborador> Update(Colaborador entidade)
         {
             await Verify(entidade);
+            
             await _cognitiveService.UpdatePerson(entidade.PersonId, entidade.Nome);
+
+            if(string.IsNullOrEmpty(entidade.Senha)) {
+              var colaborador = await _repository.ReadByIdAsNoTracking((Guid) entidade.Id);
+              entidade.Senha = colaborador.Senha;
+            } 
+
             return await _repository.Update(entidade);
         }
 
@@ -40,12 +47,22 @@ namespace SistemaPonto.Domain.Services {
 
         public override async Task Verify(Colaborador entidade)
         {
-            var ok = await _usuarioRepository.Read(x => x.Id != entidade.Id && x.Login == entidade.Login);
+            var loginCadastrado = await _usuarioRepository.Read(x => x.Id != entidade.Id && x.Login == entidade.Login);
 
-            if (ok.Count > 0)
+            if (loginCadastrado.Count > 0)
             {
                 throw new Exception("Login já utilizado");
             }
+            
+            if(!string.IsNullOrEmpty(entidade.Cpf))
+            {
+               var cpfCadastrado = await _repository.Read(x => x.Id != entidade.Id && x.Cpf == entidade.Cpf);
+
+                if (cpfCadastrado.Count > 0)
+                {
+                    throw new Exception("CPF já cadastrado");
+                }
+            }            
         }  
     }
 }
