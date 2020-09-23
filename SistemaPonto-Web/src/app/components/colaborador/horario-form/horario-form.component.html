@@ -3,7 +3,7 @@
     <form [formGroup]="horarioForm">
         <p class="row">
             <label formArrayName="dias" *ngFor="let dia of diasFormArray.controls; let i = index">
-              <mat-checkbox [formControlName]="i">{{dias[i].text}}</mat-checkbox>                     
+              <mat-checkbox [formControlName]="i" color="primary">{{dias[i].text}}</mat-checkbox>                     
             </label>   
             <mat-error *ngIf="this.isValidate">
                 <app-validator-form [field]="horarioForm.controls.dias"></app-validator-form>

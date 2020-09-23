@@ -165,11 +165,11 @@
             </ng-container>
             <ng-container matColumnDef="inicio">
                 <mat-header-cell *matHeaderCellDef>Início</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{row.inicio}}</mat-cell>
+                <mat-cell *matCellDef="let row">{{row.inicio | slice: 0:5}}</mat-cell>
             </ng-container>
             <ng-container matColumnDef="fim">
                 <mat-header-cell *matHeaderCellDef>Fim</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{row.fim}}</mat-cell>
+                <mat-cell *matCellDef="let row">{{row.fim | slice: 0:5}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="commands">
