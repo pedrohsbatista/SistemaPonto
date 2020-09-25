@@ -13,7 +13,10 @@
     <form id="colaboradorForm" [formGroup]="colaboradorForm" (ngSubmit)="save()">
         <div>
             <div class="first-row">
-                <img [src]="imagem" onerror="this.src='assets/images/sem-foto.png'" (click)="openCam()" />
+                <div class="remover-imagem" *ngIf="imagem">
+                    <button mat-mini-fab form="colaboradorForm" class="btn-danger" (click)="removerImagem()"><mat-icon>delete</mat-icon></button>
+                </div>
+                <img [src]="imagem" onerror="this.src='assets/images/sem-foto.png'" (click)="openCam()" />        
             </div>
             <div>
                 <p class="row">            

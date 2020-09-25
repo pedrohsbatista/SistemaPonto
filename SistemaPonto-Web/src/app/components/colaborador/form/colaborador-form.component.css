@@ -31,6 +31,12 @@
 .first-row{
   float: left;
   margin-right: 35px;
+  position: relative;
+}
+
+.first-row:hover .remover-imagem{
+  opacity: 1;
+  margin: 5px;
 }
 
 img {
@@ -41,4 +47,14 @@ img {
 .btn-success{
   background-color: #2e8b57;
   color: #ffffff;
+}
+
+.btn-danger{
+  background-color: #a52a2a;
+  color: #ffffff;
+}
+
+.remover-imagem {
+  position: absolute;
+  opacity: 0;
 }

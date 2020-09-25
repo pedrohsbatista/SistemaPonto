@@ -20,8 +20,9 @@ namespace SistemaPonto.Domain.Services {
         public override async Task<Colaborador> Create(Colaborador entidade)
         {
           await Verify(entidade);
-          var personId = await _cognitiveService.CreatePerson(entidade.Nome);
+          var (personId, persistedFaceId) = await _cognitiveService.CreatePerson(entidade.Nome, entidade.Imagem);
           entidade.PersonId = personId;
+          entidade.PersistedFaceId = persistedFaceId;
           return await _repository.Create(entidade);
         }
 
@@ -29,7 +30,7 @@ namespace SistemaPonto.Domain.Services {
         {
             await Verify(entidade);
             
-            await _cognitiveService.UpdatePerson(entidade.PersonId, entidade.Nome);
+            entidade.PersistedFaceId = await _cognitiveService.UpdatePerson(entidade.PersonId, entidade.Nome, entidade.Imagem, entidade.PersistedFaceId);
 
             if(string.IsNullOrEmpty(entidade.Senha)) {
               var colaborador = await _repository.ReadByIdAsNoTracking((Guid) entidade.Id);

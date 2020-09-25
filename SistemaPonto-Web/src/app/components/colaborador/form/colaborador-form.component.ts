@@ -49,7 +49,6 @@ export class ColaboradorFormComponent implements OnInit {
         this.colaboradorForm.controls['login'].setValue(colaborador.login); 
         this.colaboradorForm.controls['dataNascimento'].setValue(colaborador.dataNascimento ? formatDate(colaborador.dataNascimento, 'yyyy-MM-dd', 'en') : null); 
         this.colaboradorForm.controls['cpf'].setValue(colaborador.cpf); 
-        this.colaboradorForm.controls['imagem'].setValue(colaborador.imagem); 
         this.colaboradorForm.controls['setor'].setValue(colaborador.setor); 
         this.colaboradorForm.controls['cargo'].setValue(colaborador.cargo); 
         this.horarios.data = colaborador.horarios;
@@ -64,6 +63,8 @@ export class ColaboradorFormComponent implements OnInit {
         this.colaboradorForm.controls['telefone'].setValue(colaborador.telefone); 
         this.colaboradorForm.controls['celular'].setValue(colaborador.celular);
         this.colaboradorForm.controls['personId'].setValue(colaborador.personId);
+        this.colaboradorForm.controls['persistedFaceId'].setValue(colaborador.persistedFaceId);
+        this.imagem = colaborador.imagem ? "data:image/jpeg;base64," + colaborador.imagem : undefined;
         this.apllyValidation();
       }, (response) => {
         this.notification.openSnackBarDanger(response.error);
@@ -93,7 +94,8 @@ export class ColaboradorFormComponent implements OnInit {
         email: [undefined, [Validators.maxLength(100)]],
         telefone: [undefined, [Validators.maxLength(10)]],
         celular: [undefined, [Validators.maxLength(11)]],
-        personId: Guid.EMPTY
+        personId: Guid.EMPTY,
+        persistedFaceId: Guid.EMPTY,
       });     
   }
 
@@ -129,6 +131,12 @@ export class ColaboradorFormComponent implements OnInit {
     if(this.colaboradorForm.valid){
       var dados = this.colaboradorForm.value;
       dados.horarios = this.horarios.data;
+
+      if(this.imagem)
+      {
+        dados.imagem = this.imagem.replace("data:image/jpeg;base64,", "");
+      }
+      
       if (dados.id){
         this.colaboradorService.put(this.colaboradorForm.value).subscribe((success) => {
           this.router.navigate(['/colaborador']);
@@ -189,6 +197,10 @@ export class ColaboradorFormComponent implements OnInit {
        }
      });
   }  
+
+  removerImagem(){
+    this.imagem = null;
+  }
 }
 
 function confirmPasswordValidator(control: AbstractControl): { [key: string]: string } | null {

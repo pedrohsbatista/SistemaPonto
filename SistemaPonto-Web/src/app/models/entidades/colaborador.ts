@@ -6,7 +6,7 @@ import { Guid } from 'guid-typescript';
 export interface Colaborador extends Usuario {
    dataNascimento : Date,
    cpf: string,
-   imagem : ArrayBuffer,
+   imagem : string,
    setor : Setor,
    cargo: string,    
    horarios : Array<Horario>,
@@ -20,5 +20,6 @@ export interface Colaborador extends Usuario {
    email: string,
    telefone: string,
    celular: string,
-   personId: Guid
+   personId: Guid,
+   persistedFaceId: Guid
 }

@@ -69,5 +69,8 @@ namespace SistemaPonto.Domain.Entities {
         [Required(ErrorMessage="O campo personid é obrigatório")]
         [Column("personid")]
         public Guid PersonId { get; set; }
+
+        [Column("persistedfaceid")]
+        public Guid? PersistedFaceId { get; set; }
     }
 }
