@@ -9,7 +9,7 @@ import { Colaborador } from '../models/entidades/colaborador';
 })
 export class ColaboradorService extends GenericService<Colaborador> {
 
-  constructor(protected _http: HttpClient) {
-    super(_http, App.apiUrl + 'colaborador/');
+  constructor(protected http: HttpClient) {
+    super(http, App.apiUrl + 'colaborador/');
   }
 }

@@ -1,0 +1,14 @@
+<div class="container">
+    <mat-card class="capturarImagem">
+        <p>
+            <webcam [height]="270" width="305"
+            [trigger]="triggerObservable"
+            (imageCapture)="handleImage($event)"   
+            (initError)="handleInitError($event)">
+            </webcam>
+        </p>
+        <p>
+            <button mat-raised-button (click)="tirarFoto()" class="btn-primary">Capturar</button>
+        </p>
+    </mat-card>
+</div>

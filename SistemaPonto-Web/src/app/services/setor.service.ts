@@ -10,8 +10,8 @@ import { GenericService } from './generic.service';
 })
 export class SetorService extends GenericService<Setor>{
 
-  constructor(protected _http: HttpClient) {
-    super(_http, App.apiUrl + 'setor/');
+  constructor(protected http: HttpClient) {
+    super(http, App.apiUrl + 'setor/');
   }
 
 }

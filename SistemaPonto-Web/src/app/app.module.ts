@@ -39,6 +39,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HorarioFormComponent } from './components/colaborador/horario-form/horario-form.component';
 import { WebcamModule } from 'ngx-webcam';
 import { CameraComponent } from './utilities/camera/camera.component';
+import { CapturaComponent } from './components/captura/captura.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { CameraComponent } from './utilities/camera/camera.component';
     HomeComponent, 
     ValidatorFormComponent,
     HorarioFormComponent,
-    CameraComponent    
+    CameraComponent,
+    CapturaComponent    
   ],
   imports: [
     BrowserModule,

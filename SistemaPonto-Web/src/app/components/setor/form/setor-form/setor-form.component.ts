@@ -41,13 +41,13 @@ export class SetorFormComponent implements OnInit {
     if(this.setorForm.valid){
       var dados = this.setorForm.value;
       if (dados.id){
-        this.setorService.put(this.setorForm.value).subscribe((success) => {
+        this.setorService.put(dados).subscribe((success) => {
           this.router.navigate(['/setor']);
         }, (response) => {
           this.notification.openSnackBarDanger(response.error);
         });
       } else {
-        this.setorService.post(this.setorForm.value).subscribe((success) => {
+        this.setorService.post(dados).subscribe((success) => {
           this.router.navigate(['/setor']);
         }, (response) => {
           this.notification.openSnackBarDanger(response.error);

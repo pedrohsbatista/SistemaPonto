@@ -8,7 +8,7 @@ import { Administrativo } from '../models/entidades/administrativo';
   providedIn: 'root'
 })
 export class AdministrativoService extends GenericService<Administrativo> {
-  constructor(protected _http: HttpClient) {
-    super(_http, App.apiUrl + 'administrativo/');
+  constructor(protected http: HttpClient) {
+    super(http, App.apiUrl + 'administrativo/');
   }
 }

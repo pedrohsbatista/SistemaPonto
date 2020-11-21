@@ -138,13 +138,13 @@ export class ColaboradorFormComponent implements OnInit {
       }
       
       if (dados.id){
-        this.colaboradorService.put(this.colaboradorForm.value).subscribe((success) => {
+        this.colaboradorService.put(dados).subscribe((success) => {
           this.router.navigate(['/colaborador']);
         }, (response) => {
           this.notification.openSnackBarDanger(response.error);
         });
       } else {
-        this.colaboradorService.post(this.colaboradorForm.value).subscribe((success) => {
+        this.colaboradorService.post(dados).subscribe((success) => {
           this.router.navigate(['/colaborador']);
         }, (response) => {
           this.notification.openSnackBarDanger(response.error);

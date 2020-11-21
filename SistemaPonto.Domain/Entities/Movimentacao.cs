@@ -15,5 +15,8 @@ namespace SistemaPonto.Domain.Entities {
         [Required(ErrorMessage="O campo tipo da movimentação é obrigatório")]
         [Column("tipomovimentacao")]
         public TipoMovimentacao TipoMovimentacao { get; set; }
+        [Required(ErrorMessage="O campo imagem é obrigatório")]
+        [Column("imagem")]
+        public byte[] Imagem { get; set;}
     }
 }

@@ -24,7 +24,7 @@ export class AdministrativoFormComponent implements OnInit {
         this.administrativoForm.controls['id'].setValue(administrativo.id);
         this.administrativoForm.controls['nome'].setValue(administrativo.nome);
         this.administrativoForm.controls['login'].setValue(administrativo.login);
-        this.apllyValidation();       
+        this.applyValidation();       
       }, (response) => {
         this.notification.openSnackBarDanger(response.error);
       });    
@@ -41,7 +41,7 @@ export class AdministrativoFormComponent implements OnInit {
       }); 
   }
 
-  apllyValidation(){
+  applyValidation(){
     if(this.administrativoForm.controls['id'].value && !this.administrativoForm.controls['password'].value){
       this.administrativoForm.controls['password'].clearValidators();
       this.administrativoForm.controls['password'].updateValueAndValidity();
@@ -59,13 +59,13 @@ export class AdministrativoFormComponent implements OnInit {
     if(this.administrativoForm.valid){
       var dados = this.administrativoForm.value;
       if (dados.id){
-        this.administrativoService.put(this.administrativoForm.value).subscribe((success) => {
+        this.administrativoService.put(dados).subscribe((success) => {
           this.router.navigate(['/administrativo']);
         }, (response) => {
           this.notification.openSnackBarDanger(response.error);
         });
       } else {
-        this.administrativoService.post(this.administrativoForm.value).subscribe((success) => {
+        this.administrativoService.post(dados).subscribe((success) => {
           this.router.navigate(['/administrativo']);
         }, (response) => {
           this.notification.openSnackBarDanger(response.error);

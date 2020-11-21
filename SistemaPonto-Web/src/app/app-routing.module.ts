@@ -10,6 +10,7 @@ import { MovimentacaoComponent } from './components/movimentacao/lista/movimenta
 import { MovimentacaoFormComponent } from './components/movimentacao/form/movimentacao-form.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { CapturaComponent } from './components/captura/captura.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent, children: [ { path: 'login', component: LoginComponent } ] },
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: '', component: HomeComponent, children: [ { path: 'administrativoForm', component: AdministrativoFormComponent } ] },
   { path: '', component: HomeComponent, children: [ { path: 'administrativoForm/:id', component: AdministrativoFormComponent } ] },
   { path: '', component: HomeComponent, children: [ { path: 'movimentacao', component: MovimentacaoComponent  } ] },
-  { path: '', component: HomeComponent, children: [ { path: 'movimentacaoForm/:id', component: MovimentacaoFormComponent } ] }
+  { path: '', component: HomeComponent, children: [ { path: 'movimentacaoForm/:id', component: MovimentacaoFormComponent } ] },
+  { path: '', component: CapturaComponent, children: [ { path: 'captura', component: CapturaComponent } ] }
 ];
 
 @NgModule({

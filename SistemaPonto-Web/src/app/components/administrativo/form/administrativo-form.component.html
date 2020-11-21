@@ -31,7 +31,7 @@
 
             <mat-form-field style="width: 20%;">
                 <mat-label>Senha</mat-label>
-                <input type="password" matInput formControlName="password" (change)="apllyValidation()">
+                <input type="password" matInput formControlName="password" (change)="applyValidation()">
                 <mat-error>
                     <app-validator-form [field]="administrativoForm.controls.password"></app-validator-form>
                 </mat-error>
