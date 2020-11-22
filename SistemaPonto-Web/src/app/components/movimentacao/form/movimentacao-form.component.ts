@@ -27,7 +27,7 @@ export class MovimentacaoFormComponent implements OnInit {
     if(this.activatedRoute.snapshot.params.id){
       this.movimentacaoService.getById(this.activatedRoute.snapshot.params.id).subscribe((movimentacao: Movimentacao) => {
           this.movimentacaoForm.controls['id'].setValue(movimentacao.id);  
-          this.movimentacaoForm.controls['dataMovimentacao'].setValue(moment(movimentacao.dataMovimentacao).format("yyyy-MM-DDThh:mm"));
+          this.movimentacaoForm.controls['dataMovimentacao'].setValue(moment(movimentacao.dataMovimentacao).format("yyyy-MM-DDTHH:mm"));
           this.movimentacaoForm.controls['tipoMovimentacao'].setValue(this.enumToLabel(movimentacao.tipoMovimentacao));
           this.movimentacaoForm.controls['colaborador'].setValue(movimentacao.colaborador.nome);          
           this.imagem = "data:image/jpeg;base64," + movimentacao.imagem;

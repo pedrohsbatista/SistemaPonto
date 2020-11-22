@@ -27,7 +27,7 @@ export class CapturaComponent implements OnInit {
   }
 
   handleImage(webcamImage: WebcamImage) : void {
-    this.capturedImage = webcamImage.imageAsBase64;
+    this.capturedImage = webcamImage.imageAsDataUrl;
     this.postMovimentacao(webcamImage.imageAsBase64);
   }
 
