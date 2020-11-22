@@ -15,6 +15,7 @@ import { TipoMovimentacao } from 'src/app/models/enums/tipo-movimentacao.enum';
 export class CapturaComponent implements OnInit {
   
   trigger: Subject<void> = new Subject<void>();
+  capturedImage: string;
 
   constructor(private movimentacaoService : MovimentacaoService, private notification : NotificationService) { }
 
@@ -26,6 +27,7 @@ export class CapturaComponent implements OnInit {
   }
 
   handleImage(webcamImage: WebcamImage) : void {
+    this.capturedImage = webcamImage.imageAsBase64;
     this.postMovimentacao(webcamImage.imageAsBase64);
   }
 
@@ -39,10 +41,16 @@ export class CapturaComponent implements OnInit {
   
   postMovimentacao(imagem: string)  {
      this.movimentacaoService.postMovimentacao(imagem).subscribe((movimentacao: Movimentacao) => {
-        var mensagem = movimentacao.colaborador.nome + " - " + this.enumToLabel(movimentacao.tipoMovimentacao) + " - " + moment(movimentacao.dataMovimentacao).format("DD/MM/YYYY HH:mm");
-        this.notification.openSnackBarSuccess(mensagem);
+      var mensagem = movimentacao.colaborador.nome + " - " + this.enumToLabel(movimentacao.tipoMovimentacao) + " - " + moment(movimentacao.dataMovimentacao).format("DD/MM/YYYY HH:mm");
+      this.notification.openSnackBarSuccess(mensagem);
+      setTimeout(()=>{                           
+        this.capturedImage = undefined;
+      }, 5000);       
      }, (response) => {
-       this.notification.openSnackBarDanger(response.error);
+      this.notification.openSnackBarDanger(response.error);
+      setTimeout(()=>{                           
+        this.capturedImage = undefined;
+      }, 5000);        
      })
   }
 

@@ -13,7 +13,7 @@ import { TipoMovimentacao } from 'src/app/models/enums/tipo-movimentacao.enum';
   styleUrls: ['./movimentacao.component.css']
 })
 export class MovimentacaoComponent implements OnInit {
-  displayedColumns: string[] = ['tipoMovimentacao', 'colaborador', 'dataMovimentacao', 'commands'];
+  displayedColumns: string[] = ['tipoMovimentacao', 'dataMovimentacao', 'colaborador', 'commands'];
   dataSource: MatTableDataSource<Movimentacao>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
