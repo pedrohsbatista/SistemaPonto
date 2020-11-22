@@ -4,6 +4,6 @@ import { TipoMovimentacao } from '../enums/tipo-movimentacao.enum';
 
 export interface Movimentacao  extends EntidadeBase {
      colaborador : Colaborador
-     dataMovimentacao : Movimentacao
+     dataMovimentacao : Date
      tipoMovimentacao : TipoMovimentacao
 }

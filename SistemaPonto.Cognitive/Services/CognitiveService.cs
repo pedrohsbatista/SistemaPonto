@@ -4,6 +4,9 @@ using SistemaPonto.Domain.Interface;
 using SistemaPonto.Domain;
 using System;
 using System.IO;
+using System.Collections.Generic;
+using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
+using System.Linq;
 
 namespace SistemaPonto.Cognitive.Services {
     public class CognitiveService : ICognitiveService{
@@ -54,7 +57,29 @@ namespace SistemaPonto.Cognitive.Services {
 
            await TrainGroup();
         }  
-            
+
+
+        public async Task<Guid?> Identify(byte[] imagem){
+           var sourceFaceIds = new List<Guid>();
+
+           Stream stream = new MemoryStream(imagem);
+
+           var detectedFaces = await _faceClient.Face.DetectWithStreamAsync(stream);
+
+           foreach(var detectedFace in detectedFaces) { 
+              sourceFaceIds.Add(detectedFace.FaceId.Value);
+           }
+
+           var identifyResults = await _faceClient.Face.IdentifyAsync(sourceFaceIds, _appSettings.AzureCognitive.PersonGroupId);
+
+           foreach (var identifyResult in identifyResults)
+           {             
+               return identifyResult.Candidates.FirstOrDefault().PersonId;
+           }
+   
+           return null;
+        }
+           
          private async Task<Guid> AddFace(string personGroupId, Guid personId, byte[] imagem) {
             var stream = new MemoryStream(imagem);
             var result = await _faceClient.PersonGroupPerson.AddFaceFromStreamAsync(personGroupId, personId, stream);             
@@ -67,6 +92,10 @@ namespace SistemaPonto.Cognitive.Services {
        
         private async Task CreatePersonGroup() {          
            await _faceClient.PersonGroup.CreateAsync(_appSettings.AzureCognitive.PersonGroupId, _appSettings.AzureCognitive.PersonGroupId);
+        }
+
+           private async Task DeletePersonGroup() {          
+           await _faceClient.PersonGroup.DeleteAsync(_appSettings.AzureCognitive.PersonGroupId);
         }
 
         private async Task TrainGroup(){

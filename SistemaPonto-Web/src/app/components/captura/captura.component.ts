@@ -1,8 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { WebcamComponent, WebcamImage, WebcamInitError } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
+import { Movimentacao } from 'src/app/models/entidades/movimentacao';
 import { MovimentacaoService } from 'src/app/services/movimentacao.service';
 import { NotificationService } from 'src/app/utilities/notification.service';
+import * as moment from 'moment';
+import { TipoMovimentacao } from 'src/app/models/enums/tipo-movimentacao.enum';
 
 @Component({
   selector: 'app-captura',
@@ -35,10 +38,18 @@ export class CapturaComponent implements OnInit {
   }
   
   postMovimentacao(imagem: string)  {
-     this.movimentacaoService.postMovimentacao(imagem).subscribe((success) => {
-        this.notification.openSnackBarSuccess(success);
+     this.movimentacaoService.postMovimentacao(imagem).subscribe((movimentacao: Movimentacao) => {
+        var mensagem = movimentacao.colaborador.nome + " - " + this.enumToLabel(movimentacao.tipoMovimentacao) + " - " + moment(movimentacao.dataMovimentacao).format("DD/MM/YYYY HH:mm");
+        this.notification.openSnackBarSuccess(mensagem);
      }, (response) => {
        this.notification.openSnackBarDanger(response.error);
      })
   }
+
+  enumToLabel(tipoMovimentacao: TipoMovimentacao){
+    switch(tipoMovimentacao){
+      case TipoMovimentacao.Entrada: return "Entrada";
+      case TipoMovimentacao.Saida: return "Saída";
+    }
+  } 
 }

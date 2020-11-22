@@ -14,7 +14,12 @@ export class MovimentacaoService extends GenericService<Movimentacao> {
     super(http, App.apiUrl + 'movimentacao/');
   }
 
-  postMovimentacao(imagem: string) : Observable<Object> {
-    return this.http.post<object>(this._base, imagem)
+  httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json' }) }
+
+  postMovimentacao(imagem: string) : Observable<Movimentacao> {
+    var dados = {
+      imagem: imagem
+    };
+    return this.http.post<Movimentacao>(this._base + 'PostMovimentacao', JSON.stringify(dados), this.httpOptions)
   }
 }
