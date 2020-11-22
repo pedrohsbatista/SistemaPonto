@@ -6,4 +6,5 @@ export interface Movimentacao  extends EntidadeBase {
      colaborador : Colaborador
      dataMovimentacao : Date
      tipoMovimentacao : TipoMovimentacao
+     imagem: string
 }

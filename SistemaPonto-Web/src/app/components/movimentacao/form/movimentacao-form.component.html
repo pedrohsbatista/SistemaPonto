@@ -8,11 +8,29 @@
         </div>   
     </div>   
     <form id="movimentacaoForm" [formGroup]="movimentacaoForm">
-        <p>
-            <mat-form-field style="width: 50%;">
+        <p class="row">
+            <mat-form-field style="width: 15%;">
+                 <mat-label>Tipo Movimentação</mat-label>
+                 <input matInput formControlName="tipoMovimentacao">
+            </mat-form-field>
+            <mat-form-field style="width: 15%;">
                 <mat-label>Data</mat-label>
                 <input type="datetime-local" matInput formControlName="dataMovimentacao">
             </mat-form-field>
-        </p>   
+            <mat-form-field style="width: 40%;">
+                <mat-label>Colaborador</mat-label>
+                <input matInput formControlName="colaborador">
+            </mat-form-field>
+        </p>    
+        <div class="images">
+            <div>
+                <h2>Imagem Capturada</h2>
+                <img [src]="imagem" width="300" height="200">
+            </div>
+            <div>
+                <h2>Imagem Cadastrada</h2>
+                <img [src]="imagemColaborador" onerror="this.src='assets/images/sem-foto.png'" width="300" height="200">
+            </div>    
+        </div>         
     </form>
 </mat-card>

@@ -4,7 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Movimentacao } from '../../../models/entidades/movimentacao';
 import { MovimentacaoService } from '../../../services/movimentacao.service';
-import { NotificationService } from 'src/app/utilities/notification.service';
+import { NotificationService } from '../../../utilities/notification.service';
+import { TipoMovimentacao } from 'src/app/models/enums/tipo-movimentacao.enum';
 
 @Component({
   selector: 'app-movimentacao',
@@ -12,7 +13,7 @@ import { NotificationService } from 'src/app/utilities/notification.service';
   styleUrls: ['./movimentacao.component.css']
 })
 export class MovimentacaoComponent implements OnInit {
-  displayedColumns: string[] = ['dataMovimentacao', 'commands'];
+  displayedColumns: string[] = ['tipoMovimentacao', 'colaborador', 'dataMovimentacao', 'commands'];
   dataSource: MatTableDataSource<Movimentacao>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -43,5 +44,12 @@ export class MovimentacaoComponent implements OnInit {
     }, (response) => {
       this.notification.openSnackBarDanger(response.error);
     });
+  } 
+
+  enumToLabel(tipoMovimentacao: TipoMovimentacao){
+    switch(tipoMovimentacao){
+      case TipoMovimentacao.Entrada: return "Entrada";
+      case TipoMovimentacao.Saida: return "Saída";
+    }
   } 
 }
