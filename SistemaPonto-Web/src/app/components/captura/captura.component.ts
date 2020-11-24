@@ -41,7 +41,7 @@ export class CapturaComponent implements OnInit {
   
   postMovimentacao(imagem: string)  {
      this.movimentacaoService.postMovimentacao(imagem).subscribe((movimentacao: Movimentacao) => {
-      var mensagem = movimentacao.colaborador.nome + " - " + this.enumToLabel(movimentacao.tipoMovimentacao) + " - " + moment(movimentacao.dataMovimentacao).format("DD/MM/YYYY HH:mm");
+      var mensagem = this.enumToLabel(movimentacao.tipoMovimentacao) + " - " + moment(movimentacao.dataMovimentacao).format("DD/MM/YYYY HH:mm") + " - " + movimentacao.colaborador.nome;
       this.notification.openSnackBarSuccess(mensagem);
       setTimeout(()=>{                           
         this.capturedImage = undefined;
